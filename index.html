@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>オセロ</title>
+</head>
+<body>
+    <div id="back">
+        <div id="msg"></div>
+        <div id="board"></div>
+        <div class="wrap">
+            <button type="button" id="reset">ゲームをリセット</button>
+        </div>
+        <div class="wrap">
+            <div>
+                <label for="blackSelect" class="playerSelect">黒（先攻）を選択してください</label>
+                <select id="blackSelect" class="playerSelect">
+                    <option value="player" selected>プレイヤー</option>
+                    <option value="random">ランダム</option>
+                    <option value="oneTurn">1ターン先読み</option>
+                </select>
+            </div>
+            <div>
+                <label for="whiteSelect" class="playerSelect">白（後攻）を選択してください</label>
+                <select id="whiteSelect" class="playerSelect">
+                    <option value="player" selected>プレイヤー</option>
+                    <option value="random">ランダム</option>
+                    <option value="oneTurn">1ターン先読み</option>
+                </select>
+            </div>
+        </div>
+        <div class="wrap">
+            <label id="slider"><input type="range" id="speed" value="50" min="0" max="100" step="1">対局スピード</label>
+        </div>
+    </div>
+    <script src="computer.js"></script>
+    <script src="css.js"></script>
+    <script src="class.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
