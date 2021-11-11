@@ -28,10 +28,12 @@ class Position{
    board: オセロ盤
    putcheck: 石を置ける場所
    turn: ターン
+   end: ゲームが終了しているかどうか
    メソッド
    GetBoard(): boardを返す
    GetPutcheck(): putcheckを返す
    GetTurn(): turnを返す
+   GetEnd(): endを返す
    CheckBoard(): 置ける場所を探してputcheckに保存
    PutPosition(): 置ける場所を列挙して返す
    PutStone(y,x): boardに石を置いて挟んだ石を裏返す
@@ -67,6 +69,9 @@ class Game{
 
         /* ターンを初期化 */
         this.turn = BLACK;
+
+        /* ゲームが終了しているかどうかを初期化 */
+        this.end = false;
         
         /* 置ける場所を示すボードを初期化 */
         let newputcheck = [];
@@ -95,6 +100,11 @@ class Game{
     /* turnを返すメソッド */
     GetTurn(){
         return this.turn;
+    }
+
+    /* endを返すメソッド */
+    GetEnd(){
+        return this.end;
     }
 
 
@@ -147,8 +157,7 @@ class Game{
         for(let i=1;i<=8;i++){
             for(let j=1;j<=8;j++){
                 if(this.putcheck[i][j]){
-                    let pos = new Position(i,j);
-                    ret[ret.length] = pos;
+                    ret[ret.length] = new Position(i,j);
                 }
             }
         }
@@ -266,22 +275,9 @@ class Game{
 
     /* ゲームを終了するメソッド */
     EndGame(){
-        let black = 0;
-        let white = 0;
-        for(let i=1;i<=8;i++){
-            for(let j=1;j<=8;j++){
-                switch(this.board[i][j]){
-                    case BLACK:
-                        black++;
-                        break;
-                    case WHITE:
-                        white++;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
+        this.end = true;
+        let black = this.CountStone(BLACK);
+        let white = this.CountStone(WHITE);
 
         let msg = document.getElementById('msg');
         if(black>white){
@@ -334,6 +330,9 @@ class Game{
 
         /* ターンを初期化 */
         this.turn = BLACK;
+
+        /* ゲームが終了しているかどうかを初期化 */
+        this.end = false;
         
         /* 置ける場所を示すボードを初期化 */
         let newputcheck = [];
@@ -402,6 +401,9 @@ class SubGame{
 
         /* ターンを初期化 */
         this.turn = BLACK;
+
+        /* ゲームが終了しているかどうかを初期化 */
+        this.end = false;
         
         /* 置ける場所を示すボードを初期化 */
         let newputcheck = [];
@@ -429,6 +431,11 @@ class SubGame{
     /* turnを返すメソッド */
     GetTurn(){
         return this.turn;
+    }
+
+    /* endを返すメソッド */
+    GetEnd(){
+        return this.end;
     }
 
 
@@ -481,8 +488,7 @@ class SubGame{
         for(let i=1;i<=8;i++){
             for(let j=1;j<=8;j++){
                 if(this.putcheck[i][j]){
-                    let pos = new Position(i,j);
-                    ret[ret.length] = pos;
+                    ret[ret.length] = new Position(i,j);
                 }
             }
         }
@@ -550,22 +556,7 @@ class SubGame{
 
     /* ゲームを終了するメソッド */
     EndGame(){
-        let black = 0;
-        let white = 0;
-        for(let i=1;i<=8;i++){
-            for(let j=1;j<=8;j++){
-                switch(this.board[i][j]){
-                    case BLACK:
-                        black++;
-                        break;
-                    case WHITE:
-                        white++;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
+        this.end = true;
     }
 
 
@@ -609,6 +600,9 @@ class SubGame{
 
         /* ターンを初期化 */
         this.turn = BLACK;
+
+        /* ゲームが終了しているかどうかを初期化 */
+        this.end = false;
         
         /* 置ける場所を示すボードを初期化 */
         let newputcheck = [];

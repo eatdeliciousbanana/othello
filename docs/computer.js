@@ -27,9 +27,39 @@ function oneTurn(game){
         if(count > maxCount){
             maxCount = count;
             maxPosition.length = 0;
-            maxPosition[0] = new Position(pos[i].GetY(),pos[i].GetX());
+            maxPosition[0] = pos[i];
         }else if(count === maxCount){
-            maxPosition[maxPosition.length] = new Position(pos[i].GetY(),pos[i].GetX());
+            maxPosition[maxPosition.length] = pos[i];
+        }
+    }
+
+    let num = getRandom(0,maxPosition.length);
+    return maxPosition[num];
+}
+
+
+/* 2ターン先読み */
+function twoTurn(game){
+    let subgame = new SubGame();
+    let pos = game.PutPosition();
+    let maxCount = 0;
+    let maxPosition = [];
+
+    for(let i=0;i<pos.length;i++){
+        subgame.LoadGame(game);
+        subgame.PutStone(pos[i]);
+        subgame.UpdateGame();
+        if(subgame.GetEnd() === false){
+            subgame.PutStone(oneTurn(subgame));
+        }
+
+        let count = subgame.CountStone(game.GetTurn());
+        if(count > maxCount){
+            maxCount = count;
+            maxPosition.length = 0;
+            maxPosition[0] = pos[i];
+        }else if(count === maxCount){
+            maxPosition[maxPosition.length] = pos[i];
         }
     }
 

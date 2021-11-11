@@ -59,7 +59,9 @@ for(let i=0;i<64;i++){
 /* プレイヤーを呼び出す関数 */
 function controller(clickedPos){
 
-    let pos = new Position();
+    if(game.GetEnd()){
+        return;
+    }
 
     let playerSelect;
     if(game.GetTurn() === BLACK){
@@ -67,6 +69,8 @@ function controller(clickedPos){
     }else{
         playerSelect = whitePlayer;
     }
+
+    let pos = new Position();
 
     switch(playerSelect){
         case 'player':
@@ -77,6 +81,9 @@ function controller(clickedPos){
             break;
         case 'oneTurn':
             pos = oneTurn(game);
+            break;
+        case 'twoTurn':
+            pos = twoTurn(game);
             break;
         default:
             break;
