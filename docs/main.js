@@ -85,6 +85,9 @@ function controller(clickedPos){
         case 'twoTurn':
             pos = twoTurn(game);
             break;
+         case 'threeTurn':
+            pos = threeTurn(game);
+            break;
         default:
             break;
     }
