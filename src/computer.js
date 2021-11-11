@@ -6,33 +6,33 @@ function getRandom(m,n){
 
 /* ランダム */
 function random(game){
-    let position = game.PutPosition();
-    let num = getRandom(0, position.length);
-    return [position[num][0], position[num][1]];
+    let pos = game.PutPosition();
+    let num = getRandom(0, pos.length);
+    return pos[num];
 }
 
 
 /* 1ターン先読み */
 function oneTurn(game){
     let subgame = new SubGame();
-    let position = game.PutPosition();
+    let pos = game.PutPosition();
     let maxCount = 0;
     let maxPosition = [];
 
-    for(let i=0;i<position.length;i++){
+    for(let i=0;i<pos.length;i++){
         subgame.LoadGame(game);
-        subgame.PutStone(position[i][0], position[i][1]);
+        subgame.PutStone(pos[i]);
 
         let count = subgame.CountStone(game.GetTurn());
         if(count > maxCount){
             maxCount = count;
             maxPosition.length = 0;
-            maxPosition[0] = [position[i][0], position[i][1]];
+            maxPosition[0] = new Position(pos[i].GetY(),pos[i].GetX());
         }else if(count === maxCount){
-            maxPosition[maxPosition.length] = [position[i][0], position[i][1]];
+            maxPosition[maxPosition.length] = new Position(pos[i].GetY(),pos[i].GetX());
         }
     }
 
     let num = getRandom(0,maxPosition.length);
-    return [maxPosition[num][0], maxPosition[num][1]];
+    return maxPosition[num];
 }

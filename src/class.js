@@ -1,3 +1,28 @@
+/* 座標を表すクラス */
+class Position{
+    constructor(y=0,x=0){
+        this.y = y;
+        this.x = x;
+    }
+
+    SetY(y){
+        this.y = y;
+    }
+
+    SetX(x){
+        this.x = x;
+    }
+
+    GetY(){
+        return this.y;
+    }
+
+    GetX(){
+        return this.x;
+    }
+}
+
+
 /* 1つのゲームを表すクラス
    プロパティ
    board: オセロ盤
@@ -14,7 +39,7 @@
    UpdateGame(): ゲームを次のターンに進める
    EndGame(): ゲームを終了する
    LoadGame(): 他のGameクラスを読み込む
-   ResetGame(): ゲームをリセットするメソッド
+   ResetGame(): ゲームをリセットする
    CountStone(color): 石の数を数える
    DebugBoard(): boardの状態を表示する（デバッグ用）
    */
@@ -117,30 +142,31 @@ class Game{
 
     /* 置ける場所を列挙して返すメソッド */
     PutPosition(){
-        let position = [];
+        let ret = [];
 
         for(let i=1;i<=8;i++){
             for(let j=1;j<=8;j++){
                 if(this.putcheck[i][j]){
-                    position[position.length] = [i,j];
+                    let pos = new Position(i,j);
+                    ret[ret.length] = pos;
                 }
             }
         }
 
-        return position;
+        return ret;
     }
 
 
     /* 石を置いて、挟んだ石を裏返すメソッド */
-    PutStone(y,x){
+    PutStone(pos){
 
         /* 置けない場所には置かない */
-        if(this.putcheck[y][x] === false){
+        if(this.putcheck[pos.GetY()][pos.GetX()] === false){
             return false;
         }
 
         /* 石を置く */
-        this.board[y][x] = this.turn;
+        this.board[pos.GetY()][pos.GetX()] = this.turn;
     
         /* 挟んだ石を裏返す 8方向走査 */
         let direction = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
@@ -151,11 +177,11 @@ class Game{
             let flag = false;  //本当に裏返すかどうかを判定するフラグ
             let m = direction[i][0];
             let n = direction[i][1];
-            while(this.board[y+m][x+n] === -this.turn){
-                position[position.length] = [y+m,x+n];
+            while(this.board[pos.GetY()+m][pos.GetX()+n] === -this.turn){
+                position[position.length] = [pos.GetY()+m,pos.GetX()+n];
                 m += direction[i][0];
                 n += direction[i][1];
-                if(this.board[y+m][x+n] === this.turn){
+                if(this.board[pos.GetY()+m][pos.GetX()+n] === this.turn){
                     flag = true;
                     break;
                 }
@@ -450,30 +476,31 @@ class SubGame{
 
     /* 置ける場所を列挙して返すメソッド */
     PutPosition(){
-        let position = [];
+        let ret = [];
 
         for(let i=1;i<=8;i++){
             for(let j=1;j<=8;j++){
                 if(this.putcheck[i][j]){
-                    position[position.length] = [i,j];
+                    let pos = new Position(i,j);
+                    ret[ret.length] = pos;
                 }
             }
         }
 
-        return position;
+        return ret;
     }
 
 
     /* 石を置いて、挟んだ石を裏返すメソッド */
-    PutStone(y,x){
+    PutStone(pos){
 
         /* 置けない場所には置かない */
-        if(this.putcheck[y][x] === false){
+        if(this.putcheck[pos.GetY()][pos.GetX()] === false){
             return false;
         }
 
         /* 石を置く */
-        this.board[y][x] = this.turn;
+        this.board[pos.GetY()][pos.GetX()] = this.turn;
     
         /* 挟んだ石を裏返す 8方向走査 */
         let direction = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
@@ -484,11 +511,11 @@ class SubGame{
             let flag = false;  //本当に裏返すかどうかを判定するフラグ
             let m = direction[i][0];
             let n = direction[i][1];
-            while(this.board[y+m][x+n] === -this.turn){
-                position[position.length] = [y+m,x+n];
+            while(this.board[pos.GetY()+m][pos.GetX()+n] === -this.turn){
+                position[position.length] = [pos.GetY()+m,pos.GetX()+n];
                 m += direction[i][0];
                 n += direction[i][1];
-                if(this.board[y+m][x+n] === this.turn){
+                if(this.board[pos.GetY()+m][pos.GetX()+n] === this.turn){
                     flag = true;
                     break;
                 }

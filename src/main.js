@@ -49,16 +49,17 @@ function autoplay(){
 let cells = document.getElementsByClassName('cell');
 for(let i=0;i<64;i++){
     cells.item(i).addEventListener('click',()=>{
-        let y = parseInt(cells.item(i).id.charAt(4));
-        let x = parseInt(cells.item(i).id.charAt(5));
-        controller(y,x);
+        let clickedPos = new Position();
+        clickedPos.SetY(parseInt(cells.item(i).id.charAt(4)));
+        clickedPos.SetX(parseInt(cells.item(i).id.charAt(5)));
+        controller(clickedPos);
     });
 }
 
 /* プレイヤーを呼び出す関数 */
-function controller(y=0,x=0){
+function controller(clickedPos){
 
-    let position = [0,0];
+    let pos = new Position();
 
     let playerSelect;
     if(game.GetTurn() === BLACK){
@@ -69,20 +70,19 @@ function controller(y=0,x=0){
 
     switch(playerSelect){
         case 'player':
-            position[0] = y;
-            position[1] = x;
+            pos = clickedPos;
             break;
         case 'random':
-            position = random(game);
+            pos = random(game);
             break;
         case 'oneTurn':
-            position = oneTurn(game);
+            pos = oneTurn(game);
             break;
         default:
             break;
     }
 
-    if(game.PutStone(position[0], position[1])){
+    if(game.PutStone(pos)){
         game.UpdateGame();
     }
 }
