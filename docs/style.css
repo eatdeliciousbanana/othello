@@ -63,3 +63,8 @@ body{
 #speed{
     position: relative;
 }
+
+/* 散布図 */
+#chart{
+    background-color: white;
+}
