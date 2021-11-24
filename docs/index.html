@@ -11,10 +11,10 @@
     <div id="back">
         <div id="msg"></div>
         <div id="board"></div>
-        <div class="wrap">
+        <div class="wrapper">
             <button type="button" id="reset">ゲームをリセット</button>
         </div>
-        <div class="wrap">
+        <div class="wrapper">
             <div>
                 <label for="blackSelect" class="playerSelect">黒（先攻）を選択してください</label>
                 <select id="blackSelect" class="playerSelect">
@@ -36,11 +36,40 @@
                 </select>
             </div>
         </div>
-        <div class="wrap">
+        <div class="wrapper">
             <label id="slider"><input type="range" id="speed" value="50" min="0" max="100" step="1">対局スピード</label>
         </div>
         <div>
-            <canvas id="chart"></canvas>
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="sim_msg" id="sim_msg1"></div>
+        <div class="sim_msg" id="sim_msg2"></div>
+        <div class="wrapper">
+            <div>
+                <label for="sim_blackSelect" class="sim_comSelect">黒のコンピュータを選択</label>
+                <select id="sim_blackSelect" class="sim_comSelect">
+                    <option value="random" selected>ランダム</option>
+                    <option value="oneTurn">1ターン先読み</option>
+                    <option value="twoTurn">2ターン先読み</option>
+                    <option value="threeTurn">3ターン先読み</option>
+                </select>
+            </div>
+            <div>
+                <label for="sim_whiteSelect" class="sim_comSelect">白のコンピュータを選択</label>
+                <select id="sim_whiteSelect" class="sim_comSelect">
+                    <option value="random" selected>ランダム</option>
+                    <option value="oneTurn">1ターン先読み</option>
+                    <option value="twoTurn">2ターン先読み</option>
+                    <option value="threeTurn">3ターン先読み</option>
+                </select>
+            </div>
+        </div>
+        <div class="wrapper">
+            <label class="textbox">ゲーム数：<input type="text" class="textbox" id="game_num"></label>
+        </div>
+        <div class="wrapper">
+            <button type="button" class="sim_button" id="sim_start">シミュレーションを開始</button>
+            <button type="button" class="sim_button" id="sim_reset">シミュレーションをリセット</button>
         </div>
     </div>
     <script
@@ -50,7 +79,7 @@
     <script src="computer.js"></script>
     <script src="css.js"></script>
     <script src="class.js"></script>
-    <script src="main.js"></script>
     <script src="chartjs.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

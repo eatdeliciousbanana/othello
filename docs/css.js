@@ -45,7 +45,6 @@ function initializeCss(){
 
     /* メッセージのサイズを指定 */
     let msg = document.getElementById('msg');
-    msg.style.width = style.getPropertyValue('width');
     msg.style.height = cell_size + 'px';
     msg.style.lineHeight = cell_size + 'px';
     msg.style.fontSize = cell_size*0.4 + 'px';
@@ -67,8 +66,40 @@ function initializeCss(){
     slider.style.fontSize = cell_size*0.3 + 'px';
 
     /* 各種ボタンのマージンを指定 */
-    let wrap = document.getElementsByClassName('wrap');
-    for(let i=0;i<wrap.length;i++){
-        wrap.item(i).style.margin = cell_size/10 + 'px';
+    let wrapper = document.getElementsByClassName('wrapper');
+    for(let i=0;i<wrapper.length;i++){
+        wrapper.item(i).style.margin = cell_size/10 + 'px';
+    }
+
+    /* シミュレーションメッセージのサイズを指定 */
+    let msg_size = cell_size*0.33;
+    let msgbox_size = msg_size*1.6;
+
+    let sim_msg1 = document.getElementById('sim_msg1');
+    sim_msg1.style.height = msgbox_size + 'px';
+    sim_msg1.style.lineHeight = msgbox_size + 'px';
+    sim_msg1.style.fontSize = msg_size + 'px';
+
+    let sim_msg2 = document.getElementById('sim_msg2');
+    sim_msg2.style.height = msgbox_size + 'px';
+    sim_msg2.style.lineHeight = msgbox_size + 'px';
+    sim_msg2.style.fontSize = msg_size*0.8 + 'px';
+
+    /* ゲーム数入力欄のサイズを指定 */
+    let textbox = document.getElementsByClassName('textbox');
+    for(let i=0;i<textbox.length;i++){
+        textbox.item(i).style.fontSize = msg_size*0.8 + 'px';
+    }
+
+    /* シミュレーションのボタンのサイズを指定 */
+    let sim_button = document.getElementsByClassName('sim_button');
+    for(let i=0;i<sim_button.length;i++){
+        sim_button.item(i).style.fontSize = msg_size*0.7 + 'px';
+    }
+
+    /* シミュレーションのドロップダウンメニューのサイズを指定 */
+    let sim_comSelect = document.getElementsByClassName('sim_comSelect');
+    for(let i=0;i<sim_comSelect.length;i++){
+        sim_comSelect.item(i).style.fontSize = msg_size*0.8 + 'px';
     }
 }

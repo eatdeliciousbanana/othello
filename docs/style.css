@@ -38,10 +38,11 @@ body{
 #msg{
     position: relative;
     background-color: pink;
+    text-align: center;
 }
 
 /* 各種ボタンのラッピング */
-.wrap{
+.wrapper{
     display: inline-block;
     position: relative;
     left: 50%;
@@ -64,7 +65,19 @@ body{
     position: relative;
 }
 
-/* 散布図 */
-#chart{
+/* 折れ線グラフ */
+#canvas{
     background-color: white;
+}
+
+/* シミュレーションメッセージ */
+.sim_msg{
+    position: relative;
+    background-color: pink;
+    text-align: center;
+}
+
+/* シミュレーションのプレイヤー選択 */
+.sim_comSelect{
+    position: relative;
 }
