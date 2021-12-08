@@ -1,10 +1,10 @@
 /* body */
-body{
+body {
     margin: 0px;
 }
 
 /* 表示領域 */
-#back{
+#back {
     background-color: pink;
     max-width: 600px;
     position: relative;
@@ -13,71 +13,71 @@ body{
 }
 
 /* オセロ盤 */
-#board{
+#board {
     position: relative;
     background-color: black;
 }
 
 /* マス */
-.cell{
+.cell {
     position: absolute;
     background-color: green;
 }
 
 /* 石 */
-.stone{
+.stone {
     position: absolute;
     border-radius: 50%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     display: none;
 }
 
 /* メッセージ */
-#msg{
+#msg {
     position: relative;
     background-color: pink;
     text-align: center;
 }
 
 /* 各種ボタンのラッピング */
-.wrapper{
+.wrapper {
     display: inline-block;
     position: relative;
     left: 50%;
-    transform: translate(-50%,0%);
+    transform: translate(-50%, 0%);
     background-color: pink;
 }
 
 /* リセットボタン */
-#reset{
+#reset {
     position: relative;
 }
 
 /* プレイヤー選択 */
-.playerSelect{
+.playerSelect {
     position: relative;
 }
 
 /* 対局スピード */
-#speed{
+#speed {
     position: relative;
 }
 
 /* 折れ線グラフ */
-#canvas{
+#canvas {
     background-color: white;
 }
 
 /* シミュレーションメッセージ */
-.sim_msg{
+.sim_msg {
     position: relative;
     background-color: pink;
     text-align: center;
 }
 
 /* シミュレーションのプレイヤー選択 */
-.sim_comSelect{
+.sim_comSelect {
     position: relative;
 }

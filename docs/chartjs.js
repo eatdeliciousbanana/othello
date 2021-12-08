@@ -4,12 +4,12 @@ let myLineChart = new Chart(ctx, {});
 
 
 /* シミュレーションを行い結果をグラフに表示する関数 */
-function simulate(sim_blackCom, sim_whiteCom, game_num){
+function simulate(sim_blackCom, sim_whiteCom, game_num) {
 
   /* 石の数ごとのゲーム数 */
   let blackStone = [];
   let whiteStone = [];
-  for(let i=0;i<=64;i++){
+  for (let i = 0; i <= 64; i++) {
     blackStone[i] = 0;
     whiteStone[i] = 0;
   }
@@ -21,22 +21,22 @@ function simulate(sim_blackCom, sim_whiteCom, game_num){
 
   /* 黒,白それぞれで使用する関数を決定 */
   let color = [sim_blackCom, sim_whiteCom];
-  for(let i=0;i<2;i++){
-    switch(color[i]){
+  for (let i = 0; i < 2; i++) {
+    switch (color[i]) {
       case 'random':
-          color[i] = random;
-          break;
+        color[i] = random;
+        break;
       case 'oneTurn':
-          color[i] = oneTurn;
-          break;
+        color[i] = oneTurn;
+        break;
       case 'twoTurn':
-          color[i] = twoTurn;
-          break;
+        color[i] = twoTurn;
+        break;
       case 'threeTurn':
-          color[i] = threeTurn;
-          break;
+        color[i] = threeTurn;
+        break;
       default:
-          break;
+        break;
     }
   }
   let blackFunc = color[0];
@@ -44,19 +44,19 @@ function simulate(sim_blackCom, sim_whiteCom, game_num){
 
 
   /* シミュレーション本体 */
-  for(let i=0;i<game_num;i++){
+  for (let i = 0; i < game_num; i++) {
 
     let subgame = new SubGame();
 
-    while(subgame.GetEnd() === false){
+    while (subgame.GetEnd() === false) {
 
       let pos = new Position();
-      if(subgame.GetTurn() === BLACK){
-          pos = blackFunc(subgame);
-      }else{
-          pos = whiteFunc(subgame);
+      if (subgame.GetTurn() === BLACK) {
+        pos = blackFunc(subgame);
+      } else {
+        pos = whiteFunc(subgame);
       }
-      
+
       subgame.PutStone(pos);
       subgame.UpdateGame();
     }
@@ -64,11 +64,11 @@ function simulate(sim_blackCom, sim_whiteCom, game_num){
     let blackCount = subgame.CountStone(BLACK);
     let whiteCount = subgame.CountStone(WHITE);
 
-    if(blackCount > whiteCount){
+    if (blackCount > whiteCount) {
       blackwin++;
-    }else if(blackCount < whiteCount){
+    } else if (blackCount < whiteCount) {
       whitewin++;
-    }else{
+    } else {
       draw++;
     }
 
@@ -79,116 +79,116 @@ function simulate(sim_blackCom, sim_whiteCom, game_num){
 
   /* グラフのラベルとデータ */
   let plotLabels = [];
-  for(let i=0;i<=64;i++){
+  for (let i = 0; i <= 64; i++) {
     plotLabels[i] = i;
   }
   let plotData = {
-      black: blackStone,
-      white: whiteStone,
+    black: blackStone,
+    white: whiteStone,
   };
 
 
   let data = {
-      labels: plotLabels,
-      datasets: [
-        {
-          label: '黒',
-          data: plotData.black,
-          // 背景色
-          backgroundColor: '#7fcfff',
-          // 線の色
-          borderColor: '#7fcfff',
-          // 塗りつぶし
-          fill: false,
-          // 折り目をカクカクにする
-          //lineTension: 0,
-          // マーカー背景色
-          pointBackgroundColor: '#7fcfff',
-          // マーカーの Hover 時のサイズ
-          pointHoverRadius: 3
-        },
-        {
-          label: '白',
-          data: plotData.white,
-          backgroundColor: '#ff978f',
-          borderColor: '#ff978f',
-          fill: false,
-          //lineTension: 0,
-          pointBackgroundColor: '#ff978f',
-          pointHoverRadius: 3
-        },
-      ],
+    labels: plotLabels,
+    datasets: [
+      {
+        label: '黒',
+        data: plotData.black,
+        // 背景色
+        backgroundColor: '#7fcfff',
+        // 線の色
+        borderColor: '#7fcfff',
+        // 塗りつぶし
+        fill: false,
+        // 折り目をカクカクにする
+        //lineTension: 0,
+        // マーカー背景色
+        pointBackgroundColor: '#7fcfff',
+        // マーカーの Hover 時のサイズ
+        pointHoverRadius: 3
+      },
+      {
+        label: '白',
+        data: plotData.white,
+        backgroundColor: '#ff978f',
+        borderColor: '#ff978f',
+        fill: false,
+        //lineTension: 0,
+        pointBackgroundColor: '#ff978f',
+        pointHoverRadius: 3
+      },
+    ],
   };
 
 
   // グラフオプション
   let options = {
-      // 自動サイズ変更をする
-      responsive: true,
-      // タイトル
-      title: {
-        display: true,
-        fontSize: 14,
-        fontStyle: 'normal', // 太字にしない
-        padding: 20,
-        text: '黒と白の石の数の比較'
-      },
-      // 凡例
-      legend: {
-        // 右上に配置
-        align: 'start',
-        position: 'right',
-        // 余白
-        labels: {
-          padding: 15
-        }
-      },
-      // 軸
-      scales: {
-        // X 軸
-        xAxes: [{
-          scaleLabel: {
-              display: true,
-              labelString: '石の数',
-            },
-          // 軸線を表示する
-          gridLines: {
-            display: true,
-          },
-          // 目盛り
-          ticks: {
-            fontColor: '#333',
-            min: 0,
-            minRotation: 0,
-            maxRotation: 0,
-            maxTicksLimit: 10,
-          },
-        }],
-        // Y 軸
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'ゲーム数',
-          },
-          gridLines: {
-            color: '#f3f3f3',
-            zeroLineColor: '#ddd'
-          },
-          ticks: {
-            fontColor: '#333',
-            min: 0,
-          }
-        }]
+    // 自動サイズ変更をする
+    responsive: true,
+    // タイトル
+    title: {
+      display: true,
+      fontSize: 14,
+      fontStyle: 'normal', // 太字にしない
+      padding: 20,
+      text: '黒と白の石の数の比較'
+    },
+    // 凡例
+    legend: {
+      // 右上に配置
+      align: 'start',
+      position: 'right',
+      // 余白
+      labels: {
+        padding: 15
       }
+    },
+    // 軸
+    scales: {
+      // X 軸
+      xAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: '石の数',
+        },
+        // 軸線を表示する
+        gridLines: {
+          display: true,
+        },
+        // 目盛り
+        ticks: {
+          fontColor: '#333',
+          min: 0,
+          minRotation: 0,
+          maxRotation: 0,
+          maxTicksLimit: 10,
+        },
+      }],
+      // Y 軸
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'ゲーム数',
+        },
+        gridLines: {
+          color: '#f3f3f3',
+          zeroLineColor: '#ddd'
+        },
+        ticks: {
+          fontColor: '#333',
+          min: 0,
+        }
+      }]
+    }
   };
 
 
   // 折れ線グラフを描画
   myLineChart.destroy();  //それまで描画されていた内容を消去
   myLineChart = new Chart(ctx, {
-      type: 'line',
-      data: data,
-      options: options,
+    type: 'line',
+    data: data,
+    options: options,
   });
 
 
