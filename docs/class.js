@@ -315,6 +315,8 @@ class SubGame {
 /* SubGameクラスに画面出力の機能を追加したクラス
    追加したメソッド
    OutputGame(): ゲームの状態を画面に反映
+   LoadCookie(): Cookieを読み込む
+   UpdateCookie(): Cookieを更新する
    変更したメソッド
    constructor()
    UpdateGame()
@@ -325,12 +327,20 @@ class Game extends SubGame {
 
     constructor() {
         super();
-        this.OutputGame();
+        this.LoadCookie();
+        if (this.CheckBoard()) {
+            this.OutputGame();
+        } else {
+            this.OutputGame();
+            this.EndGame();
+        }
     }
 
 
     /* ゲームの状態を表示するメソッド */
     OutputGame() {
+        /* Cookieを更新 */
+        this.UpdateCookie();
 
         /* メッセージを表示 */
         let msg = document.getElementById('msg');
@@ -415,5 +425,34 @@ class Game extends SubGame {
     ResetGame() {
         super.ResetGame();
         this.OutputGame();
+    }
+
+
+    /* Cookieを読み込むメソッド */
+    LoadCookie() {
+        let cookie = document.cookie;
+        if (cookie.includes('board') === false) {
+            return;
+        }
+        cookie = cookie.slice(6, cookie.length);
+        for (let i = 1; i <= 8; i++) {
+            for (let j = 1; j <= 8; j++) {
+                this.board[i][j] = parseInt(cookie.charAt((i - 1) * 8 + j - 1)) - 1;  //盤の状態を復元
+            }
+        }
+        this.turn = parseInt(cookie.charAt(cookie.length - 1)) - 1;  //ターンを復元
+    }
+
+
+    /* Cookieを更新するメソッド */
+    UpdateCookie() {
+        let cookie = 'board=';
+        for (let i = 1; i <= 8; i++) {
+            for (let j = 1; j <= 8; j++) {
+                cookie += this.board[i][j] + 1;  //盤の状態を保存
+            }
+        }
+        cookie += this.turn + 1;  //ターンを保存
+        document.cookie = cookie;
     }
 }
