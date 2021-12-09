@@ -55,6 +55,11 @@ body {
     position: relative;
 }
 
+/* togetherjsボタン */
+#togetherjs {
+    position: relative;
+}
+
 /* プレイヤー選択 */
 .playerSelect {
     position: relative;

@@ -43,6 +43,10 @@ function initializeCss() {
         }
     }
 
+    /* メッセージの上のマージンを指定 */
+    let margin = document.getElementById('margin');
+    margin.style.height = cell_size + 'px';
+
     /* メッセージのサイズを指定 */
     let msg = document.getElementById('msg');
     msg.style.height = cell_size + 'px';
@@ -52,6 +56,10 @@ function initializeCss() {
     /* リセットボタンのサイズを指定 */
     let reset = document.getElementById('reset');
     reset.style.fontSize = cell_size * 0.3 + 'px';
+
+    /* togetherjsボタンのサイズを指定 */
+    let togetherjs = document.getElementById('togetherjs');
+    togetherjs.style.fontSize = cell_size * 0.35 + 'px';
 
     /* ドロップダウンメニューのサイズを指定 */
     let playerSelect = document.getElementsByClassName('playerSelect');

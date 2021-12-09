@@ -11,10 +11,12 @@
 
 <body>
     <div id="back">
+        <div id="margin"></div>
         <div id="msg"></div>
         <div id="board"></div>
         <div class="wrapper">
             <button type="button" id="reset">ゲームをリセット</button>
+            <button onclick="TogetherJS(this); return false;" id="togetherjs">Start TogetherJS</button>
         </div>
         <div class="wrapper">
             <div>
@@ -82,6 +84,12 @@
             <button type="button" class="sim_button" id="sim_reset">シミュレーションをリセット</button>
         </div>
     </div>
+    <script>
+        TogetherJSConfig_hubBase = "https://togetherjs-hub.glitch.me/";
+        TogetherJSConfig_dontShowClicks = true;
+        TogetherJSConfig_cloneClicks = true;
+    </script>
+    <script src="https://togetherjs.com/togetherjs-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
         integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
         crossorigin="anonymous"></script>
