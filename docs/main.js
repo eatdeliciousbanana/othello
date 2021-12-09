@@ -80,13 +80,19 @@ function controller(clickedPos) {
             pos = random(game);
             break;
         case 'oneTurn':
-            pos = oneTurn(game);
+            pos = nTurn(game, 1);
             break;
         case 'twoTurn':
-            pos = twoTurn(game);
+            pos = nTurn(game, 2);
             break;
         case 'threeTurn':
-            pos = threeTurn(game);
+            pos = nTurn(game, 3);
+            break;
+        case 'fourTurn':
+            pos = nTurn(game, 4);
+            break;
+        case 'fiveTurn':
+            pos = nTurn(game, 5);
             break;
         default:
             break;
@@ -135,6 +141,12 @@ function update_simmsg1() {
                 break;
             case 'threeTurn':
                 color[i] = '3ターン先読み';
+                break;
+            case 'fourTurn':
+                color[i] = '4ターン先読み';
+                break;
+            case 'fiveTurn':
+                color[i] = '5ターン先読み';
                 break;
             default:
                 break;

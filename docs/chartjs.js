@@ -21,26 +21,40 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
 
     /* 黒,白それぞれで使用する関数を決定 */
     let color = [sim_blackCom, sim_whiteCom];
+    let depth = [];
     for (let i = 0; i < 2; i++) {
         switch (color[i]) {
             case 'random':
                 color[i] = random;
                 break;
             case 'oneTurn':
-                color[i] = oneTurn;
+                color[i] = nTurn;
+                depth[i] = 1;
                 break;
             case 'twoTurn':
-                color[i] = twoTurn;
+                color[i] = nTurn;
+                depth[i] = 2;
                 break;
             case 'threeTurn':
-                color[i] = threeTurn;
+                color[i] = nTurn;
+                depth[i] = 3;
+                break;
+            case 'fourTurn':
+                color[i] = nTurn;
+                depth[i] = 4;
+                break;
+            case 'fiveTurn':
+                color[i] = nTurn;
+                depth[i] = 5;
                 break;
             default:
                 break;
         }
     }
     let blackFunc = color[0];
+    let blackDepth = depth[0];
     let whiteFunc = color[1];
+    let whiteDepth = depth[1];
 
 
     /* シミュレーション本体 */
@@ -52,9 +66,9 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
 
             let pos = new Position();
             if (subgame.GetTurn() === BLACK) {
-                pos = blackFunc(subgame);
+                pos = blackFunc(subgame, blackDepth);
             } else {
-                pos = whiteFunc(subgame);
+                pos = whiteFunc(subgame, whiteDepth);
             }
 
             subgame.PutStone(pos);
