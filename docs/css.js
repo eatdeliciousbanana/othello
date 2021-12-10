@@ -59,7 +59,7 @@ function initializeCss() {
 
     /* togetherjsボタンのサイズを指定 */
     let togetherjs = document.getElementById('togetherjs');
-    togetherjs.style.fontSize = cell_size * 0.35 + 'px';
+    togetherjs.style.fontSize = cell_size * 0.3 + 'px';
 
     /* ドロップダウンメニューのサイズを指定 */
     let playerSelect = document.getElementsByClassName('playerSelect');
