@@ -79,20 +79,35 @@ function controller(clickedPos) {
         case 'random':
             pos = random(game);
             break;
-        case 'oneTurn':
-            pos = nTurn(game, 1);
+        case 'oneTurnMax':
+            pos = nTurnMax(game, 1);
             break;
-        case 'twoTurn':
-            pos = nTurn(game, 2);
+        case 'twoTurnMax':
+            pos = nTurnMax(game, 2);
             break;
-        case 'threeTurn':
-            pos = nTurn(game, 3);
+        case 'threeTurnMax':
+            pos = nTurnMax(game, 3);
             break;
-        case 'fourTurn':
-            pos = nTurn(game, 4);
+        case 'fourTurnMax':
+            pos = nTurnMax(game, 4);
             break;
-        case 'fiveTurn':
-            pos = nTurn(game, 5);
+        case 'fiveTurnMax':
+            pos = nTurnMax(game, 5);
+            break;
+        case 'oneTurnMin':
+            pos = nTurnMin(game, 1);
+            break;
+        case 'twoTurnMin':
+            pos = nTurnMin(game, 2);
+            break;
+        case 'threeTurnMin':
+            pos = nTurnMin(game, 3);
+            break;
+        case 'fourTurnMin':
+            pos = nTurnMin(game, 4);
+            break;
+        case 'fiveTurnMin':
+            pos = nTurnMin(game, 5);
             break;
         default:
             break;
@@ -133,20 +148,35 @@ function update_simmsg1() {
             case 'random':
                 color[i] = 'ランダム';
                 break;
-            case 'oneTurn':
-                color[i] = '1ターン先読み';
+            case 'oneTurnMax':
+                color[i] = '1ターン先読み最大';
                 break;
-            case 'twoTurn':
-                color[i] = '2ターン先読み';
+            case 'twoTurnMax':
+                color[i] = '2ターン先読み最大';
                 break;
-            case 'threeTurn':
-                color[i] = '3ターン先読み';
+            case 'threeTurnMax':
+                color[i] = '3ターン先読み最大';
                 break;
-            case 'fourTurn':
-                color[i] = '4ターン先読み';
+            case 'fourTurnMax':
+                color[i] = '4ターン先読み最大';
                 break;
-            case 'fiveTurn':
-                color[i] = '5ターン先読み';
+            case 'fiveTurnMax':
+                color[i] = '5ターン先読み最大';
+                break;
+            case 'oneTurnMin':
+                color[i] = '1ターン先読み最小';
+                break;
+            case 'twoTurnMin':
+                color[i] = '2ターン先読み最小';
+                break;
+            case 'threeTurnMin':
+                color[i] = '3ターン先読み最小';
+                break;
+            case 'fourTurnMin':
+                color[i] = '4ターン先読み最小';
+                break;
+            case 'fiveTurnMin':
+                color[i] = '5ターン先読み最小';
                 break;
             default:
                 break;

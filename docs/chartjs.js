@@ -26,25 +26,46 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
         switch (color[i]) {
             case 'random':
                 color[i] = random;
+                depth[i] = 0;
                 break;
-            case 'oneTurn':
-                color[i] = nTurn;
+            case 'oneTurnMax':
+                color[i] = nTurnMax;
                 depth[i] = 1;
                 break;
-            case 'twoTurn':
-                color[i] = nTurn;
+            case 'twoTurnMax':
+                color[i] = nTurnMax;
                 depth[i] = 2;
                 break;
-            case 'threeTurn':
-                color[i] = nTurn;
+            case 'threeTurnMax':
+                color[i] = nTurnMax;
                 depth[i] = 3;
                 break;
-            case 'fourTurn':
-                color[i] = nTurn;
+            case 'fourTurnMax':
+                color[i] = nTurnMax;
                 depth[i] = 4;
                 break;
-            case 'fiveTurn':
-                color[i] = nTurn;
+            case 'fiveTurnMax':
+                color[i] = nTurnMax;
+                depth[i] = 5;
+                break;
+            case 'oneTurnMin':
+                color[i] = nTurnMin;
+                depth[i] = 1;
+                break;
+            case 'twoTurnMin':
+                color[i] = nTurnMin;
+                depth[i] = 2;
+                break;
+            case 'threeTurnMin':
+                color[i] = nTurnMin;
+                depth[i] = 3;
+                break;
+            case 'fourTurnMin':
+                color[i] = nTurnMin;
+                depth[i] = 4;
+                break;
+            case 'fiveTurnMin':
+                color[i] = nTurnMin;
                 depth[i] = 5;
                 break;
             default:

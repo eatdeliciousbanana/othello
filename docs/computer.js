@@ -102,8 +102,8 @@ function threeTurn(game) {
 }
 
 
-/* nターン先読み */
-function nTurn(game, n = 1) {
+/* nターン先読み最大 */
+function nTurnMax(game, n) {
     let subgame = new SubGame();
     let pos = game.PutPosition();
     let maxCount = 0;
@@ -112,7 +112,7 @@ function nTurn(game, n = 1) {
     for (let i = 0; i < pos.length; i++) {
         subgame.LoadGame(game);
         subgame.PutStone(pos[i]);
-        nTurn_kernel(subgame, n);
+        nTurnMax_kernel(subgame, n);
 
         let count = subgame.CountStone(game.GetTurn());
         if (count > maxCount) {
@@ -129,14 +129,54 @@ function nTurn(game, n = 1) {
 }
 
 
-/* nターン先読みのカーネル */
-function nTurn_kernel(subgame, n) {
+/* nターン先読み最大のカーネル */
+function nTurnMax_kernel(subgame, n) {
     if (n === 1) {
         return;
     }
     subgame.UpdateGame();
     if (subgame.GetEnd() === false) {
-        subgame.PutStone(nTurn(subgame, n - 1));
-        nTurn_kernel(subgame, n - 1);
+        subgame.PutStone(nTurnMax(subgame, n - 1));
+        nTurnMax_kernel(subgame, n - 1);
+    }
+}
+
+
+/* nターン先読み最小 */
+function nTurnMin(game, n) {
+    let subgame = new SubGame();
+    let pos = game.PutPosition();
+    let minCount = 65;
+    let minPosition = [];
+
+    for (let i = 0; i < pos.length; i++) {
+        subgame.LoadGame(game);
+        subgame.PutStone(pos[i]);
+        nTurnMin_kernel(subgame, n);
+
+        let count = subgame.CountStone(game.GetTurn());
+        if (count < minCount) {
+            minCount = count;
+            minPosition.length = 0;
+            minPosition[0] = pos[i];
+        } else if (count === minCount) {
+            minPosition[minPosition.length] = pos[i];
+        }
+    }
+
+    let num = getRandom(0, minPosition.length);
+    return minPosition[num];
+}
+
+
+/* nターン先読み最小のカーネル */
+function nTurnMin_kernel(subgame, n) {
+    if (n === 1) {
+        return;
+    }
+    subgame.UpdateGame();
+    if (subgame.GetEnd() === false) {
+        subgame.PutStone(nTurnMin(subgame, n - 1));
+        nTurnMin_kernel(subgame, n - 1);
     }
 }
