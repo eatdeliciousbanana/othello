@@ -1,4 +1,3 @@
 # othello
-othello simulator
-You can play here.
+オセロ
 https://eatdeliciousbanana.github.io/othello/
