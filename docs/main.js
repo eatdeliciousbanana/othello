@@ -16,7 +16,9 @@ let reloadId = window.setInterval(() => {
     for (let i = 0; i < elements.length; i++) {
         if (elements.item(i).innerText === 'Yes, join session') {
             elements.item(i).addEventListener('click', () => {
-                window.location.reload();
+                window.setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
             });
             window.clearInterval(reloadId);
         }
