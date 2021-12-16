@@ -10,6 +10,23 @@ initializeCss();
 /* ゲームを作成 */
 const game = new Game();
 
+/* オンラインマルチプレイモードで, ゲームに参加したときに自動でページをリロードする */
+let reloadId = window.setInterval(() => {
+    let elements = document.getElementsByClassName('togetherjs-primary togetherjs-dismiss');
+    for (let i = 0; i < elements.length; i++) {
+        if (elements.item(i).innerText === 'Yes, join session') {
+            elements.item(i).addEventListener('click', () => {
+                window.location.reload();
+            });
+            window.clearInterval(reloadId);
+        }
+    }
+}, 10);
+
+window.setTimeout(() => {
+    window.clearInterval(reloadId);
+}, 3000);
+
 /* 黒プレイヤーの選択 */
 let blackPlayer = 'player';
 let blackSelect = document.getElementById('blackSelect');
