@@ -231,6 +231,5 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
     let blackwin_ratio = (blackwin / game_num).toFixed(4);
     let whitewin_ratio = (whitewin / game_num).toFixed(4);
     let draw_ratio = (draw / game_num).toFixed(4);
-    let sim_msg2 = document.getElementById('sim_msg2');
-    sim_msg2.innerText = '黒の勝率:' + blackwin_ratio + '　白の勝率:' + whitewin_ratio + '　引き分けの比率:' + draw_ratio;
+    $('#sim_msg2').text('黒の勝率:' + blackwin_ratio + '　白の勝率:' + whitewin_ratio + '　引き分けの比率:' + draw_ratio);
 }

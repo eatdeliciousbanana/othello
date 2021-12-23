@@ -343,40 +343,45 @@ class Game extends SubGame {
         this.UpdateCookie();
 
         /* メッセージを表示 */
-        let msg = document.getElementById('msg');
-        msg.innerText = ((this.turn === WHITE) ? '白' : '黒') + 'のターンです';
+        $('#msg').text(((this.turn === WHITE) ? '白' : '黒') + 'のターンです');
 
         /* オセロ盤を表示 */
         for (let i = 1; i <= 8; i++) {
             for (let j = 1; j <= 8; j++) {
 
                 /* 石を表示 */
-                let stone = document.getElementById('stone' + i + j);
+                let $stone = $('#stone' + i + j);
                 switch (this.board[i][j]) {
                     case WHITE:
-                        stone.style.backgroundColor = 'white';
-                        stone.style.display = 'block';
+                        $stone.css({
+                            'background-color': 'white',
+                            'display': 'block'
+                        });
                         break;
                     case BLACK:
-                        stone.style.backgroundColor = 'black';
-                        stone.style.display = 'block';
+                        $stone.css({
+                            'background-color': 'black',
+                            'display': 'block'
+                        });
                         break;
                     case NONE:
-                        stone.style.backgroundColor = 'null';
-                        stone.style.display = 'none';
+                        $stone.css({
+                            'background-color': 'null',
+                            'display': 'none'
+                        });
                         break;
                     default:
                         break;
                 }
 
                 /* マスを表示 */
-                let cell = document.getElementById('cell' + i + j);
+                let $cell = $('#cell' + i + j);
                 switch (this.putcheck[i][j]) {
                     case true:
-                        cell.style.backgroundColor = 'rgb(70, 200, 30)';
+                        $cell.css('background-color', 'rgb(70, 200, 30)');
                         break;
                     case false:
-                        cell.style.backgroundColor = 'green';
+                        $cell.css('background-color', 'green');
                         break;
                     default:
                         break;
@@ -410,13 +415,13 @@ class Game extends SubGame {
         let black = this.CountStone(BLACK);
         let white = this.CountStone(WHITE);
 
-        let msg = document.getElementById('msg');
+        let $msg = $('#msg');
         if (black > white) {
-            msg.innerText = '黒' + black + '個, 白' + white + '個で黒の勝ちです！';
+            $msg.text('黒' + black + '個, 白' + white + '個で黒の勝ちです！');
         } else if (black === white) {
-            msg.innerText = '黒' + black + '個, 白' + white + '個で引き分けです！';
+            $msg.text('黒' + black + '個, 白' + white + '個で引き分けです！');
         } else {
-            msg.innerText = '黒' + black + '個, 白' + white + '個で白の勝ちです！';
+            $msg.text('黒' + black + '個, 白' + white + '個で白の勝ちです！');
         }
     }
 
