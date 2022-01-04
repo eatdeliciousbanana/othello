@@ -28,11 +28,13 @@ class Position {
    board: オセロ盤
    putcheck: 石を置ける場所
    turn: ターン
+   turnNum: ターン数のカウント(1~61ターン)
    end: ゲームが終了しているかどうか
    メソッド
    GetBoard(): boardを返す
    GetPutcheck(): putcheckを返す
    GetTurn(): turnを返す
+   GetTurnNum(): turnNumを返す
    GetEnd(): endを返す
    CheckBoard(): 置ける場所を探してputcheckに保存
    PutPosition(): 置ける場所を列挙して返す
@@ -69,6 +71,9 @@ class SubGame {
         /* ターンを初期化 */
         this.turn = BLACK;
 
+        /* ターン数のカウントを初期化 */
+        this.turnNum = 1;
+
         /* ゲームが終了しているかどうかを初期化 */
         this.end = false;
 
@@ -98,6 +103,11 @@ class SubGame {
     /* turnを返すメソッド */
     GetTurn() {
         return this.turn;
+    }
+
+    /* turnNumを返すメソッド */
+    GetTurnNum() {
+        return this.turnNum;
     }
 
     /* endを返すメソッド */
@@ -209,6 +219,7 @@ class SubGame {
     /* ゲームを次のターンに進めるメソッド */
     UpdateGame() {
         this.turn = -this.turn;
+        this.turnNum++;
 
         if (this.CheckBoard()) {
         } else {
@@ -232,6 +243,8 @@ class SubGame {
         let board = game.GetBoard();
         let putcheck = game.GetPutcheck();
         let turn = game.GetTurn();
+        let turnNum = game.GetTurnNum();
+        let end = game.GetEnd();
 
         for (let i = 1; i <= 8; i++) {
             for (let j = 1; j <= 8; j++) {
@@ -240,6 +253,8 @@ class SubGame {
             }
         }
         this.turn = turn;
+        this.turnNum = turnNum;
+        this.end = end;
     }
 
 
@@ -267,6 +282,9 @@ class SubGame {
 
         /* ターンを初期化 */
         this.turn = BLACK;
+
+        /* ターン数のカウントを初期化 */
+        this.turnNum = 1;
 
         /* ゲームが終了しているかどうかを初期化 */
         this.end = false;
@@ -328,6 +346,7 @@ class Game extends SubGame {
     constructor() {
         super();
         this.LoadCookie();
+        this.turnNum = this.CountStone(BLACK) + this.CountStone(WHITE) - 3;
         if (this.CheckBoard()) {
             this.OutputGame();
         } else {
@@ -394,6 +413,7 @@ class Game extends SubGame {
     /* ゲームを次のターンに進めるメソッド */
     UpdateGame() {
         this.turn = -this.turn;
+        this.turnNum++;
 
         if (this.CheckBoard()) {
             this.OutputGame()
