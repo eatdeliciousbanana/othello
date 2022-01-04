@@ -24,16 +24,21 @@
                 <select id="blackSelect" class="playerSelect">
                     <option value="player" selected>プレイヤー</option>
                     <option value="random">ランダム</option>
-                    <option value="oneTurnMax">1ターン先読み最大</option>
-                    <option value="twoTurnMax">2ターン先読み最大</option>
-                    <option value="threeTurnMax">3ターン先読み最大</option>
-                    <option value="fourTurnMax">4ターン先読み最大</option>
-                    <option value="fiveTurnMax">5ターン先読み最大</option>
-                    <option value="oneTurnMin">1ターン先読み最小</option>
-                    <option value="twoTurnMin">2ターン先読み最小</option>
-                    <option value="threeTurnMin">3ターン先読み最小</option>
-                    <option value="fourTurnMin">4ターン先読み最小</option>
-                    <option value="fiveTurnMin">5ターン先読み最小</option>
+                    <option value="oneTurnMax">1ターン先最大石数</option>
+                    <option value="twoTurnMax">2ターン先最大石数</option>
+                    <option value="threeTurnMax">3ターン先最大石数</option>
+                    <option value="fourTurnMax">4ターン先最大石数</option>
+                    <option value="fiveTurnMax">5ターン先最大石数</option>
+                    <option value="oneTurnMin">1ターン先最小石数</option>
+                    <option value="twoTurnMin">2ターン先最小石数</option>
+                    <option value="threeTurnMin">3ターン先最小石数</option>
+                    <option value="fourTurnMin">4ターン先最小石数</option>
+                    <option value="fiveTurnMin">5ターン先最小石数</option>
+                    <option value="oneTurnBestPos">1ターン先最良位置</option>
+                    <option value="twoTurnBestPos">2ターン先最良位置</option>
+                    <option value="threeTurnBestPos">3ターン先最良位置</option>
+                    <option value="fourTurnBestPos">4ターン先最良位置</option>
+                    <option value="fiveTurnBestPos">5ターン先最良位置</option>
                 </select>
             </div>
             <div>
@@ -41,16 +46,21 @@
                 <select id="whiteSelect" class="playerSelect">
                     <option value="player" selected>プレイヤー</option>
                     <option value="random">ランダム</option>
-                    <option value="oneTurnMax">1ターン先読み最大</option>
-                    <option value="twoTurnMax">2ターン先読み最大</option>
-                    <option value="threeTurnMax">3ターン先読み最大</option>
-                    <option value="fourTurnMax">4ターン先読み最大</option>
-                    <option value="fiveTurnMax">5ターン先読み最大</option>
-                    <option value="oneTurnMin">1ターン先読み最小</option>
-                    <option value="twoTurnMin">2ターン先読み最小</option>
-                    <option value="threeTurnMin">3ターン先読み最小</option>
-                    <option value="fourTurnMin">4ターン先読み最小</option>
-                    <option value="fiveTurnMin">5ターン先読み最小</option>
+                    <option value="oneTurnMax">1ターン先最大石数</option>
+                    <option value="twoTurnMax">2ターン先最大石数</option>
+                    <option value="threeTurnMax">3ターン先最大石数</option>
+                    <option value="fourTurnMax">4ターン先最大石数</option>
+                    <option value="fiveTurnMax">5ターン先最大石数</option>
+                    <option value="oneTurnMin">1ターン先最小石数</option>
+                    <option value="twoTurnMin">2ターン先最小石数</option>
+                    <option value="threeTurnMin">3ターン先最小石数</option>
+                    <option value="fourTurnMin">4ターン先最小石数</option>
+                    <option value="fiveTurnMin">5ターン先最小石数</option>
+                    <option value="oneTurnBestPos">1ターン先最良位置</option>
+                    <option value="twoTurnBestPos">2ターン先最良位置</option>
+                    <option value="threeTurnBestPos">3ターン先最良位置</option>
+                    <option value="fourTurnBestPos">4ターン先最良位置</option>
+                    <option value="fiveTurnBestPos">5ターン先最良位置</option>
                 </select>
             </div>
         </div>
@@ -67,32 +77,42 @@
                 <label for="sim_blackSelect" class="sim_comSelect">黒のコンピュータを選択</label>
                 <select id="sim_blackSelect" class="sim_comSelect">
                     <option value="random" selected>ランダム</option>
-                    <option value="oneTurnMax">1ターン先読み最大</option>
-                    <option value="twoTurnMax">2ターン先読み最大</option>
-                    <option value="threeTurnMax">3ターン先読み最大</option>
-                    <option value="fourTurnMax">4ターン先読み最大</option>
-                    <option value="fiveTurnMax">5ターン先読み最大</option>
-                    <option value="oneTurnMin">1ターン先読み最小</option>
-                    <option value="twoTurnMin">2ターン先読み最小</option>
-                    <option value="threeTurnMin">3ターン先読み最小</option>
-                    <option value="fourTurnMin">4ターン先読み最小</option>
-                    <option value="fiveTurnMin">5ターン先読み最小</option>
+                    <option value="oneTurnMax">1ターン先最大石数</option>
+                    <option value="twoTurnMax">2ターン先最大石数</option>
+                    <option value="threeTurnMax">3ターン先最大石数</option>
+                    <option value="fourTurnMax">4ターン先最大石数</option>
+                    <option value="fiveTurnMax">5ターン先最大石数</option>
+                    <option value="oneTurnMin">1ターン先最小石数</option>
+                    <option value="twoTurnMin">2ターン先最小石数</option>
+                    <option value="threeTurnMin">3ターン先最小石数</option>
+                    <option value="fourTurnMin">4ターン先最小石数</option>
+                    <option value="fiveTurnMin">5ターン先最小石数</option>
+                    <option value="oneTurnBestPos">1ターン先最良位置</option>
+                    <option value="twoTurnBestPos">2ターン先最良位置</option>
+                    <option value="threeTurnBestPos">3ターン先最良位置</option>
+                    <option value="fourTurnBestPos">4ターン先最良位置</option>
+                    <option value="fiveTurnBestPos">5ターン先最良位置</option>
                 </select>
             </div>
             <div>
                 <label for="sim_whiteSelect" class="sim_comSelect">白のコンピュータを選択</label>
                 <select id="sim_whiteSelect" class="sim_comSelect">
                     <option value="random" selected>ランダム</option>
-                    <option value="oneTurnMax">1ターン先読み最大</option>
-                    <option value="twoTurnMax">2ターン先読み最大</option>
-                    <option value="threeTurnMax">3ターン先読み最大</option>
-                    <option value="fourTurnMax">4ターン先読み最大</option>
-                    <option value="fiveTurnMax">5ターン先読み最大</option>
-                    <option value="oneTurnMin">1ターン先読み最小</option>
-                    <option value="twoTurnMin">2ターン先読み最小</option>
-                    <option value="threeTurnMin">3ターン先読み最小</option>
-                    <option value="fourTurnMin">4ターン先読み最小</option>
-                    <option value="fiveTurnMin">5ターン先読み最小</option>
+                    <option value="oneTurnMax">1ターン先最大石数</option>
+                    <option value="twoTurnMax">2ターン先最大石数</option>
+                    <option value="threeTurnMax">3ターン先最大石数</option>
+                    <option value="fourTurnMax">4ターン先最大石数</option>
+                    <option value="fiveTurnMax">5ターン先最大石数</option>
+                    <option value="oneTurnMin">1ターン先最小石数</option>
+                    <option value="twoTurnMin">2ターン先最小石数</option>
+                    <option value="threeTurnMin">3ターン先最小石数</option>
+                    <option value="fourTurnMin">4ターン先最小石数</option>
+                    <option value="fiveTurnMin">5ターン先最小石数</option>
+                    <option value="oneTurnBestPos">1ターン先最良位置</option>
+                    <option value="twoTurnBestPos">2ターン先最良位置</option>
+                    <option value="threeTurnBestPos">3ターン先最良位置</option>
+                    <option value="fourTurnBestPos">4ターン先最良位置</option>
+                    <option value="fiveTurnBestPos">5ターン先最良位置</option>
                 </select>
             </div>
         </div>

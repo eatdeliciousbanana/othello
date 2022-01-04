@@ -12,7 +12,7 @@ function random(game) {
 }
 
 
-/* nターン先読み最大 */
+/* nターン先最大石数 */
 function nTurnMax(game, n) {
     let subgame = new SubGame();
     let pos = game.PutPosition();
@@ -39,7 +39,7 @@ function nTurnMax(game, n) {
 }
 
 
-/* nターン先読み最大のカーネル */
+/* nターン先最大石数のカーネル */
 function nTurnMax_kernel(subgame, n) {
     if (n === 1) {
         return;
@@ -52,7 +52,7 @@ function nTurnMax_kernel(subgame, n) {
 }
 
 
-/* nターン先読み最小 */
+/* nターン先最小石数 */
 function nTurnMin(game, n) {
     let subgame = new SubGame();
     let pos = game.PutPosition();
@@ -79,7 +79,7 @@ function nTurnMin(game, n) {
 }
 
 
-/* nターン先読み最小のカーネル */
+/* nターン先最小石数のカーネル */
 function nTurnMin_kernel(subgame, n) {
     if (n === 1) {
         return;
@@ -88,5 +88,72 @@ function nTurnMin_kernel(subgame, n) {
     if (subgame.GetEnd() === false) {
         subgame.PutStone(nTurnMin(subgame, n - 1));
         nTurnMin_kernel(subgame, n - 1);
+    }
+}
+
+
+/* 重み付け */
+const weight = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 30, -12, 0, -1, -1, 0, -12, 30, 0],
+    [0, -12, -15, -3, -3, -3, -3, -15, -12, 0],
+    [0, 0, -3, 0, -1, -1, 0, -3, 0, 0],
+    [0, -1, -3, -1, -1, -1, -1, -3, -1, 0],
+    [0, -1, -3, -1, -1, -1, -1, -3, -1, 0],
+    [0, 0, -3, 0, -1, -1, 0, -3, 0, 0],
+    [0, -12, -15, -3, -3, -3, -3, -15, -12, 0],
+    [0, 30, -12, 0, -1, -1, 0, -12, 30, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+];
+
+
+/* nターン先最良位置 */
+function nTurnBestPos(game, n) {
+    let subgame = new SubGame();
+    let pos = game.PutPosition();
+    let turn = game.GetTurn();
+    let maxEval = -1000;
+    let bestPosition = [];
+
+    for (let i = 0; i < pos.length; i++) {
+        subgame.LoadGame(game);
+        subgame.PutStone(pos[i]);
+        nTurnBestPos_kernel(subgame, n);
+
+        let board = subgame.GetBoard();
+        let eval = 0;
+        for (let j = 1; j <= 8; j++) {
+            for (let k = 1; k <= 8; k++) {
+                if (board[j][k] === turn) {
+                    eval += weight[j][k];
+                } else if (board[j][k] === -turn) {
+                    eval -= weight[j][k];
+                }
+            }
+        }
+
+        if (eval > maxEval) {
+            maxEval = eval;
+            bestPosition.length = 0;
+            bestPosition[0] = pos[i];
+        } else if (eval === maxEval) {
+            bestPosition[bestPosition.length] = pos[i];
+        }
+    }
+
+    let num = getRandom(0, bestPosition.length);
+    return bestPosition[num];
+}
+
+
+/* nターン先最良位置のカーネル */
+function nTurnBestPos_kernel(subgame, n) {
+    if (n === 1) {
+        return;
+    }
+    subgame.UpdateGame();
+    if (subgame.GetEnd() === false) {
+        subgame.PutStone(nTurnBestPos(subgame, n - 1));
+        nTurnBestPos_kernel(subgame, n - 1);
     }
 }

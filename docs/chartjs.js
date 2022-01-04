@@ -68,6 +68,26 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
                 color[i] = nTurnMin;
                 depth[i] = 5;
                 break;
+            case 'oneTurnBestPos':
+                color[i] = nTurnBestPos;
+                depth[i] = 1;
+                break;
+            case 'twoTurnBestPos':
+                color[i] = nTurnBestPos;
+                depth[i] = 2;
+                break;
+            case 'threeTurnBestPos':
+                color[i] = nTurnBestPos;
+                depth[i] = 3;
+                break;
+            case 'fourTurnBestPos':
+                color[i] = nTurnBestPos;
+                depth[i] = 4;
+                break;
+            case 'fiveTurnBestPos':
+                color[i] = nTurnBestPos;
+                depth[i] = 5;
+                break;
             default:
                 break;
         }

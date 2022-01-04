@@ -125,6 +125,21 @@ $(function () {
             case 'fiveTurnMin':
                 pos = nTurnMin(game, 5);
                 break;
+            case 'oneTurnBestPos':
+                pos = nTurnBestPos(game, 1);
+                break;
+            case 'twoTurnBestPos':
+                pos = nTurnBestPos(game, 2);
+                break;
+            case 'threeTurnBestPos':
+                pos = nTurnBestPos(game, 3);
+                break;
+            case 'fourTurnBestPos':
+                pos = nTurnBestPos(game, 4);
+                break;
+            case 'fiveTurnBestPos':
+                pos = nTurnBestPos(game, 5);
+                break;
             default:
                 break;
         }
@@ -162,34 +177,49 @@ $(function () {
                     color[i] = 'ランダム';
                     break;
                 case 'oneTurnMax':
-                    color[i] = '1ターン先読み最大';
+                    color[i] = '1ターン先最大石数';
                     break;
                 case 'twoTurnMax':
-                    color[i] = '2ターン先読み最大';
+                    color[i] = '2ターン先最大石数';
                     break;
                 case 'threeTurnMax':
-                    color[i] = '3ターン先読み最大';
+                    color[i] = '3ターン先最大石数';
                     break;
                 case 'fourTurnMax':
-                    color[i] = '4ターン先読み最大';
+                    color[i] = '4ターン先最大石数';
                     break;
                 case 'fiveTurnMax':
-                    color[i] = '5ターン先読み最大';
+                    color[i] = '5ターン先最大石数';
                     break;
                 case 'oneTurnMin':
-                    color[i] = '1ターン先読み最小';
+                    color[i] = '1ターン先最小石数';
                     break;
                 case 'twoTurnMin':
-                    color[i] = '2ターン先読み最小';
+                    color[i] = '2ターン先最小石数';
                     break;
                 case 'threeTurnMin':
-                    color[i] = '3ターン先読み最小';
+                    color[i] = '3ターン先最小石数';
                     break;
                 case 'fourTurnMin':
-                    color[i] = '4ターン先読み最小';
+                    color[i] = '4ターン先最小石数';
                     break;
                 case 'fiveTurnMin':
-                    color[i] = '5ターン先読み最小';
+                    color[i] = '5ターン先最小石数';
+                    break;
+                case 'oneTurnBestPos':
+                    color[i] = '1ターン先最良位置';
+                    break;
+                case 'twoTurnBestPos':
+                    color[i] = '2ターン先最良位置';
+                    break;
+                case 'threeTurnBestPos':
+                    color[i] = '3ターン先最良位置';
+                    break;
+                case 'fourTurnBestPos':
+                    color[i] = '4ターン先最良位置';
+                    break;
+                case 'fiveTurnBestPos':
+                    color[i] = '5ターン先最良位置';
                     break;
                 default:
                     break;
