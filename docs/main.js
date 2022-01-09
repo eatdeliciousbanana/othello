@@ -72,7 +72,7 @@ $(function () {
         });
     });
 
-    /* プレイヤーを呼び出す関数 */
+    /* ゲームを進める関数 */
     function controller(clickedPos) {
 
         if (game.GetEnd()) {
@@ -88,60 +88,14 @@ $(function () {
 
         let pos = new Position();
 
-        switch (playerSelect) {
-            case 'player':
-                pos = clickedPos;
-                break;
-            case 'random':
-                pos = random(game);
-                break;
-            case 'oneTurnMax':
-                pos = nTurnMax(game, 1);
-                break;
-            case 'twoTurnMax':
-                pos = nTurnMax(game, 2);
-                break;
-            case 'threeTurnMax':
-                pos = nTurnMax(game, 3);
-                break;
-            case 'fourTurnMax':
-                pos = nTurnMax(game, 4);
-                break;
-            case 'fiveTurnMax':
-                pos = nTurnMax(game, 5);
-                break;
-            case 'oneTurnMin':
-                pos = nTurnMin(game, 1);
-                break;
-            case 'twoTurnMin':
-                pos = nTurnMin(game, 2);
-                break;
-            case 'threeTurnMin':
-                pos = nTurnMin(game, 3);
-                break;
-            case 'fourTurnMin':
-                pos = nTurnMin(game, 4);
-                break;
-            case 'fiveTurnMin':
-                pos = nTurnMin(game, 5);
-                break;
-            case 'oneTurnBestPos':
-                pos = nTurnBestPos(game, 1);
-                break;
-            case 'twoTurnBestPos':
-                pos = nTurnBestPos(game, 2);
-                break;
-            case 'threeTurnBestPos':
-                pos = nTurnBestPos(game, 3);
-                break;
-            case 'fourTurnBestPos':
-                pos = nTurnBestPos(game, 4);
-                break;
-            case 'fiveTurnBestPos':
-                pos = nTurnBestPos(game, 5);
-                break;
-            default:
-                break;
+        if (playerSelect === 'player') {
+            pos = clickedPos;
+        } else {
+            let ret = toFunc(playerSelect);
+            let func = ret[0];
+            let depth = ret[1];
+            let customCom = ret[2];
+            pos = func(game, depth, customCom);
         }
 
         if (game.PutStone(pos)) {
@@ -221,6 +175,12 @@ $(function () {
                 case 'fiveTurnBestPos':
                     color[i] = '5ターン先最良位置';
                     break;
+                case 'customComA':
+                    color[i] = 'カスタムA';
+                    break;
+                case 'customComB':
+                    color[i] = 'カスタムB';
+                    break;
                 default:
                     break;
             }
@@ -236,7 +196,7 @@ $(function () {
             $('#sim_msg2').text('ゲーム数は 1 以上 100,000 以下の整数値を入力してください');
             return;
         }
-        simulate(sim_blackCom, sim_whiteCom, game_num);
+        simulate(toFunc(sim_blackCom), toFunc(sim_whiteCom), game_num);
     });
 
     /* シミュレーションを初期化 */
@@ -252,8 +212,209 @@ $(function () {
         sim_blackCom = 'random';
         sim_whiteCom = 'random';
         update_simmsg1();
-        simulate(sim_blackCom, sim_whiteCom, 0);
+        simulate(toFunc(sim_blackCom), toFunc(sim_whiteCom), 0);
         $('#sim_msg2').text('ゲーム数を入力してシミュレーションを開始してください');
         $('#game_num').val('');
+    }
+
+
+    /* カスタムコンピュータのオプション */
+    let customOptions = {
+        customComA: {
+            com1: random,
+            com1_depth: 0,
+            com2: random,
+            com2_depth: 0,
+            com3: random,
+            com3_depth: 0,
+            division1: 20,
+            division2: 40,
+        },
+        customComB: {
+            com1: random,
+            com1_depth: 0,
+            com2: random,
+            com2_depth: 0,
+            com3: random,
+            com3_depth: 0,
+            division1: 20,
+            division2: 40,
+        },
+    };
+
+
+    /* カスタムコンピュータAの表示切替 */
+    $('#customComA_title').on('click', function () {
+        $('#customComA_config').slideToggle();
+    });
+
+
+    /* カスタムコンピュータAの序盤コンピュータ */
+    $('#customComA_select1').on('change', function () {
+        let ret = toFunc($(this).val());
+        customOptions.customComA.com1 = ret[0];
+        customOptions.customComA.com1_depth = ret[1];
+    });
+
+
+    /* カスタムコンピュータAの中盤コンピュータ */
+    $('#customComA_select2').on('change', function () {
+        let ret = toFunc($(this).val());
+        customOptions.customComA.com2 = ret[0];
+        customOptions.customComA.com2_depth = ret[1];
+    });
+
+
+    /* カスタムコンピュータAの終盤コンピュータ */
+    $('#customComA_select3').on('change', function () {
+        let ret = toFunc($(this).val());
+        customOptions.customComA.com3 = ret[0];
+        customOptions.customComA.com3_depth = ret[1];
+    });
+
+
+    /* カスタムコンピュータAのスライダー */
+    $('#customComA_slider').slider({
+        range: true,
+        min: 1,
+        max: 60,
+        step: 1,
+        values: [20, 40],
+        slide: function (event, ui) {
+            let d1 = ui.values[0];
+            let d2 = ui.values[1];
+            customOptions.customComA.division1 = d1;
+            customOptions.customComA.division2 = d2;
+            $('#customComA_msg').text('序盤:1～' + d1 + '　中盤:' + (d1 + 1) + '～' + d2 + '　終盤:' + (d2 + 1) + '～60ターン');
+        }
+    });
+
+
+    /* カスタムコンピュータBの表示切替 */
+    $('#customComB_title').on('click', function () {
+        $('#customComB_config').slideToggle();
+    });
+
+
+    /* カスタムコンピュータBの序盤コンピュータ */
+    $('#customComB_select1').on('change', function () {
+        let ret = toFunc($(this).val());
+        customOptions.customComB.com1 = ret[0];
+        customOptions.customComB.com1_depth = ret[1];
+    });
+
+
+    /* カスタムコンピュータBの中盤コンピュータ */
+    $('#customComB_select2').on('change', function () {
+        let ret = toFunc($(this).val());
+        customOptions.customComB.com2 = ret[0];
+        customOptions.customComB.com2_depth = ret[1];
+    });
+
+
+    /* カスタムコンピュータBの終盤コンピュータ */
+    $('#customComB_select3').on('change', function () {
+        let ret = toFunc($(this).val());
+        customOptions.customComB.com3 = ret[0];
+        customOptions.customComB.com3_depth = ret[1];
+    });
+
+
+    /* カスタムコンピュータBのスライダー */
+    $('#customComB_slider').slider({
+        range: true,
+        min: 1,
+        max: 60,
+        step: 1,
+        values: [20, 40],
+        slide: function (event, ui) {
+            let d1 = ui.values[0];
+            let d2 = ui.values[1];
+            customOptions.customComB.division1 = d1;
+            customOptions.customComB.division2 = d2;
+            $('#customComB_msg').text('序盤:1～' + d1 + '　中盤:' + (d1 + 1) + '～' + d2 + '　終盤:' + (d2 + 1) + '～60ターン');
+        }
+    });
+
+
+    /* コンピュータ名をコンピュータ関数に変換 */
+    function toFunc(comName) {
+        let comFunc, depth, customCom;
+        switch (comName) {
+            case 'random':
+                comFunc = random;
+                break;
+            case 'oneTurnMax':
+                comFunc = nTurnMax;
+                depth = 1;
+                break;
+            case 'twoTurnMax':
+                comFunc = nTurnMax;
+                depth = 2;
+                break;
+            case 'threeTurnMax':
+                comFunc = nTurnMax;
+                depth = 3;
+                break;
+            case 'fourTurnMax':
+                comFunc = nTurnMax;
+                depth = 4;
+                break;
+            case 'fiveTurnMax':
+                comFunc = nTurnMax;
+                depth = 5;
+                break;
+            case 'oneTurnMin':
+                comFunc = nTurnMin;
+                depth = 1;
+                break;
+            case 'twoTurnMin':
+                comFunc = nTurnMin;
+                depth = 2;
+                break;
+            case 'threeTurnMin':
+                comFunc = nTurnMin;
+                depth = 3;
+                break;
+            case 'fourTurnMin':
+                comFunc = nTurnMin;
+                depth = 4;
+                break;
+            case 'fiveTurnMin':
+                comFunc = nTurnMin;
+                depth = 5;
+                break;
+            case 'oneTurnBestPos':
+                comFunc = nTurnBestPos;
+                depth = 1;
+                break;
+            case 'twoTurnBestPos':
+                comFunc = nTurnBestPos;
+                depth = 2;
+                break;
+            case 'threeTurnBestPos':
+                comFunc = nTurnBestPos;
+                depth = 3;
+                break;
+            case 'fourTurnBestPos':
+                comFunc = nTurnBestPos;
+                depth = 4;
+                break;
+            case 'fiveTurnBestPos':
+                comFunc = nTurnBestPos;
+                depth = 5;
+                break;
+            case 'customComA':
+                comFunc = custom;
+                customCom = customOptions.customComA;
+                break;
+            case 'customComB':
+                comFunc = custom;
+                customCom = customOptions.customComB;
+                break;
+            default:
+                break;
+        }
+        return [comFunc, depth, customCom];
     }
 });

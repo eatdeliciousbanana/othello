@@ -47,7 +47,6 @@ body {
     position: relative;
     left: 50%;
     transform: translate(-50%, 0%);
-    background-color: pink;
 }
 
 /* リセットボタン */
@@ -68,6 +67,56 @@ body {
 /* 対局スピード */
 #speed {
     position: relative;
+}
+
+/* カスタムコンピュータ */
+.customCom {
+    background-color: white;
+}
+
+/* カスタムコンピュータAタイトル */
+#customComA_title {
+    text-align: center;
+    background-color: lightskyblue;
+}
+
+/* カスタムコンピュータAタイトルホバー */
+#customComA_title:hover {
+    background-color: rgb(100, 190, 250);
+}
+
+/* カスタムコンピュータA設定 */
+#customComA_config {
+    display: none;
+    border: solid lightskyblue;
+}
+
+/* カスタムコンピュータメッセージ */
+.customCom_msg {
+    text-align: center;
+    margin: 2%;
+}
+
+/* カスタムコンピュータスライダー */
+.customCom_slider {
+    width: 70%;
+}
+
+/* カスタムコンピュータBタイトル */
+#customComB_title {
+    text-align: center;
+    background-color: lightgreen;
+}
+
+/* カスタムコンピュータBタイトルホバー */
+#customComB_title:hover {
+    background-color: rgb(100, 230, 100);
+}
+
+/* カスタムコンピュータB設定 */
+#customComB_config {
+    display: none;
+    border: solid lightgreen;
 }
 
 /* 折れ線グラフ */

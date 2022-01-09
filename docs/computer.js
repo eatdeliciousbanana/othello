@@ -157,3 +157,26 @@ function nTurnBestPos_kernel(subgame, n) {
         nTurnBestPos_kernel(subgame, n - 1);
     }
 }
+
+
+/* カスタム */
+function custom(game, dummy, customCom) {
+    let turnNum = game.GetTurnNum();
+    let d1 = customCom.division1;
+    let d2 = customCom.division2;
+    let func, depth;
+
+    if (turnNum <= d1) {
+        func = customCom.com1;
+        depth = customCom.com1_depth;
+        return func(game, depth);
+    } else if (turnNum <= d2) {
+        func = customCom.com2;
+        depth = customCom.com2_depth;
+        return func(game, depth);
+    } else {
+        func = customCom.com3;
+        depth = customCom.com3_depth;
+        return func(game, depth);
+    }
+}

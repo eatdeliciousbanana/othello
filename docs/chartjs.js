@@ -20,82 +20,12 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
     let draw = 0;
 
     /* 黒,白それぞれで使用する関数を決定 */
-    let color = [sim_blackCom, sim_whiteCom];
-    let depth = [];
-    for (let i = 0; i < 2; i++) {
-        switch (color[i]) {
-            case 'random':
-                color[i] = random;
-                depth[i] = 0;
-                break;
-            case 'oneTurnMax':
-                color[i] = nTurnMax;
-                depth[i] = 1;
-                break;
-            case 'twoTurnMax':
-                color[i] = nTurnMax;
-                depth[i] = 2;
-                break;
-            case 'threeTurnMax':
-                color[i] = nTurnMax;
-                depth[i] = 3;
-                break;
-            case 'fourTurnMax':
-                color[i] = nTurnMax;
-                depth[i] = 4;
-                break;
-            case 'fiveTurnMax':
-                color[i] = nTurnMax;
-                depth[i] = 5;
-                break;
-            case 'oneTurnMin':
-                color[i] = nTurnMin;
-                depth[i] = 1;
-                break;
-            case 'twoTurnMin':
-                color[i] = nTurnMin;
-                depth[i] = 2;
-                break;
-            case 'threeTurnMin':
-                color[i] = nTurnMin;
-                depth[i] = 3;
-                break;
-            case 'fourTurnMin':
-                color[i] = nTurnMin;
-                depth[i] = 4;
-                break;
-            case 'fiveTurnMin':
-                color[i] = nTurnMin;
-                depth[i] = 5;
-                break;
-            case 'oneTurnBestPos':
-                color[i] = nTurnBestPos;
-                depth[i] = 1;
-                break;
-            case 'twoTurnBestPos':
-                color[i] = nTurnBestPos;
-                depth[i] = 2;
-                break;
-            case 'threeTurnBestPos':
-                color[i] = nTurnBestPos;
-                depth[i] = 3;
-                break;
-            case 'fourTurnBestPos':
-                color[i] = nTurnBestPos;
-                depth[i] = 4;
-                break;
-            case 'fiveTurnBestPos':
-                color[i] = nTurnBestPos;
-                depth[i] = 5;
-                break;
-            default:
-                break;
-        }
-    }
-    let blackFunc = color[0];
-    let blackDepth = depth[0];
-    let whiteFunc = color[1];
-    let whiteDepth = depth[1];
+    let blackFunc = sim_blackCom[0];
+    let blackDepth = sim_blackCom[1];
+    let blackCustomCom = sim_blackCom[2];
+    let whiteFunc = sim_whiteCom[0];
+    let whiteDepth = sim_whiteCom[1];
+    let whiteCustomCom = sim_whiteCom[2];
 
 
     /* シミュレーション本体 */
@@ -107,9 +37,9 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
 
             let pos = new Position();
             if (subgame.GetTurn() === BLACK) {
-                pos = blackFunc(subgame, blackDepth);
+                pos = blackFunc(subgame, blackDepth, blackCustomCom);
             } else {
-                pos = whiteFunc(subgame, whiteDepth);
+                pos = whiteFunc(subgame, whiteDepth, whiteCustomCom);
             }
 
             subgame.PutStone(pos);
