@@ -69,11 +69,6 @@ body {
     position: relative;
 }
 
-/* カスタムコンピュータ */
-.customCom {
-    background-color: white;
-}
-
 /* カスタムコンピュータAタイトル */
 #customComA_title {
     text-align: center;
@@ -89,6 +84,7 @@ body {
 #customComA_config {
     display: none;
     border: solid lightskyblue;
+    background-color: white;
 }
 
 /* カスタムコンピュータメッセージ */
@@ -117,6 +113,7 @@ body {
 #customComB_config {
     display: none;
     border: solid lightgreen;
+    background-color: white;
 }
 
 /* 折れ線グラフ */

@@ -33,9 +33,9 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
 
         let subgame = new SubGame();
 
-        while (subgame.GetEnd() === false) {
+        while (!subgame.GetEnd()) {
 
-            let pos = new Position();
+            let pos;
             if (subgame.GetTurn() === BLACK) {
                 pos = blackFunc(subgame, blackDepth, blackCustomCom);
             } else {

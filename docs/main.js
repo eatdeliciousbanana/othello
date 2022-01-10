@@ -86,8 +86,7 @@ $(function () {
             playerSelect = whitePlayer;
         }
 
-        let pos = new Position();
-
+        let pos;
         if (playerSelect === 'player') {
             pos = clickedPos;
         } else {
