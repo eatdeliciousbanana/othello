@@ -45,7 +45,7 @@ function nTurnMax_kernel(subgame, n) {
         return;
     }
     subgame.UpdateGame();
-    if (subgame.GetEnd() === false) {
+    if (!subgame.GetEnd()) {
         subgame.PutStone(nTurnMax(subgame, n - 1));
         nTurnMax_kernel(subgame, n - 1);
     }
@@ -85,7 +85,7 @@ function nTurnMin_kernel(subgame, n) {
         return;
     }
     subgame.UpdateGame();
-    if (subgame.GetEnd() === false) {
+    if (!subgame.GetEnd()) {
         subgame.PutStone(nTurnMin(subgame, n - 1));
         nTurnMin_kernel(subgame, n - 1);
     }
@@ -152,7 +152,7 @@ function nTurnBestPos_kernel(subgame, n) {
         return;
     }
     subgame.UpdateGame();
-    if (subgame.GetEnd() === false) {
+    if (!subgame.GetEnd()) {
         subgame.PutStone(nTurnBestPos(subgame, n - 1));
         nTurnBestPos_kernel(subgame, n - 1);
     }
