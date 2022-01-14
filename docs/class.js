@@ -221,11 +221,9 @@ class SubGame {
         this.turn = -this.turn;
         this.turnNum++;
 
-        if (this.CheckBoard()) {
-        } else {
+        if (!this.CheckBoard()) {
             this.turn = -this.turn;
-            if (this.CheckBoard()) {
-            } else {
+            if (!this.CheckBoard()) {
                 this.EndGame();
             }
         }

@@ -4,7 +4,7 @@ body {
 }
 
 /* 表示領域 */
-#back {
+#display {
     background-color: pink;
     max-width: 600px;
     position: relative;

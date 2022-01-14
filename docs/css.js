@@ -2,7 +2,7 @@
 function initializeCss() {
 
     /* 表示領域のサイズを設定 */
-    $('#back').css('width', window.innerWidth + 'px');
+    $('#display').css('width', window.innerWidth + 'px');
 
     /* オセロ盤のサイズを設定 */
     $('#board').css('height', $('#board').css('width'));
@@ -41,8 +41,10 @@ function initializeCss() {
         }
     }
 
-    /* メッセージの上のマージンを設定 */
-    $('#margin').css('height', cell_size + 'px');
+    /* 表示領域のはじめと最後のマージンを設定 */
+    $('.display_margin').each(function (i, elem) {
+        $(elem).css('height', cell_size + 'px');
+    });
 
     /* メッセージのサイズを設定 */
     $('#msg').css({
