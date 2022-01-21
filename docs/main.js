@@ -13,7 +13,7 @@ $(function () {
     const game = new Game();
 
     /* オンラインマルチプレイモードで, ゲームに参加したときに自動でページをリロードする */
-    let reloadId = window.setInterval(() => {
+    TogetherJS.on('ready', function () {
         $('.togetherjs-primary.togetherjs-dismiss').each(function (i, elem) {
             if ($(elem).text() === 'Yes, join session') {
                 $(elem).on('click', function () {
@@ -21,14 +21,9 @@ $(function () {
                         window.location.reload();
                     }, 1000);
                 });
-                window.clearInterval(reloadId);
             }
         });
-    }, 10);
-
-    window.setTimeout(() => {
-        window.clearInterval(reloadId);
-    }, 3000);
+    });
 
     /* 黒プレイヤーの選択 */
     let blackPlayer = 'player';
