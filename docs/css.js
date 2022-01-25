@@ -2,7 +2,7 @@
 function initializeCss() {
 
     /* 表示領域のサイズを設定 */
-    $('#display').css('width', window.innerWidth + 'px');
+    $('#display').css('width', $(window).width() + 'px');
 
     /* オセロ盤のサイズを設定 */
     $('#board').css('height', $('#board').css('width'));
@@ -111,7 +111,7 @@ function initializeCss() {
 function resizeCss() {
 
     /* 表示領域のサイズを設定 */
-    $('#display').css('width', window.innerWidth + 'px');
+    $('#display').css('width', $(window).width() + 'px');
 
     /* オセロ盤のサイズを設定 */
     $('#board').css('height', $('#board').css('width'));

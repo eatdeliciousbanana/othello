@@ -10,7 +10,7 @@ $(function () {
     initializeCss();
 
     /* ウィンドウリサイズ */
-    window.onresize = resizeCss;
+    $(window).on('orientationchange resize', resizeCss);
 
     /* ゲームを作成 */
     const game = new Game();
