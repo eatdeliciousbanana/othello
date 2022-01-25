@@ -9,6 +9,9 @@ $(function () {
     /* cssの設定を初期化 */
     initializeCss();
 
+    /* ウィンドウリサイズ */
+    window.onresize = resizeCss;
+
     /* ゲームを作成 */
     const game = new Game();
 
