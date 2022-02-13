@@ -1,13 +1,13 @@
-/* サイズの設定を初期化する関数 */
+// サイズの設定を初期化する関数
 function initSize() {
 
-    /* 表示領域のサイズを設定 */
+    // 表示領域のサイズを設定
     $('#display').css('width', $(window).width() + 'px');
 
-    /* オセロ盤のサイズを設定 */
+    // オセロ盤のサイズを設定
     $('#board').css('height', $('#board').css('width'));
 
-    /* マスの生成 */
+    // マスの生成
     const cell_size = parseInt($('#board').css('width')) / 8 - 2;
 
     for (let i = 0; i < 8; i++) {
@@ -25,7 +25,7 @@ function initSize() {
         }
     }
 
-    /* 石の生成 */
+    // 石の生成
     const stone_size = cell_size * 0.7;
 
     for (let i = 0; i < 8; i++) {
@@ -41,39 +41,39 @@ function initSize() {
         }
     }
 
-    /* 表示領域のはじめと最後のマージンを設定 */
+    // 表示領域のはじめと最後のマージンを設定
     $('.display_margin').each(function (i, elem) {
         $(elem).css('height', cell_size + 'px');
     });
 
-    /* メッセージのサイズを設定 */
+    // メッセージのサイズを設定
     $('#msg').css({
         'height': cell_size + 'px',
         'line-height': cell_size + 'px',
         'font-size': cell_size * 0.4 + 'px'
     });
 
-    /* リセットボタンのサイズを設定 */
+    // リセットボタンのサイズを設定
     $('#reset').css('font-size', cell_size * 0.3 + 'px');
 
-    /* オンラインマルチプレイボタンのサイズを設定 */
+    // オンラインマルチプレイボタンのサイズを設定
     $('#togetherjs').css('font-size', cell_size * 0.3 + 'px');
 
-    /* ドロップダウンメニューのサイズを設定 */
+    // ドロップダウンメニューのサイズを設定
     $('.playerSelect').each(function (i, elem) {
         $(elem).css('font-size', cell_size * 0.3 + 'px');
     });
 
-    /* スライダーのサイズを設定 */
+    // スライダーのサイズを設定
     $('#speed').css('width', cell_size * 3 + 'px');
     $('#slider').css('font-size', cell_size * 0.3 + 'px');
 
-    /* 各種ボタンのマージンを設定 */
+    // 各種ボタンのマージンを設定
     $('.wrapper').each(function (i, elem) {
         $(elem).css('margin', cell_size / 10 + 'px');
     });
 
-    /* シミュレーションメッセージのサイズを設定 */
+    // シミュレーションメッセージのサイズを設定
     const msg_size = cell_size * 0.33;
     const msgbox_size = msg_size * 1.6;
 
@@ -89,17 +89,17 @@ function initSize() {
         'font-size': msg_size * 0.8 + 'px'
     });
 
-    /* ゲーム数入力欄のサイズを設定 */
+    // ゲーム数入力欄のサイズを設定
     $('.textbox').each(function (i, elem) {
         $(elem).css('font-size', msg_size * 0.8 + 'px');
     });
 
-    /* シミュレーションのボタンのサイズを設定 */
+    // シミュレーションのボタンのサイズを設定
     $('.sim_button').each(function (i, elem) {
         $(elem).css('font-size', msg_size * 0.7 + 'px');
     });
 
-    /* シミュレーションのドロップダウンメニューのサイズを設定 */
+    // シミュレーションのドロップダウンメニューのサイズを設定
     $('.sim_comSelect').each(function (i, elem) {
         $(elem).css('font-size', msg_size * 0.8 + 'px');
     });
@@ -107,16 +107,16 @@ function initSize() {
 
 
 
-/* ウィンドウリサイズ時にサイズの設定を更新する関数 */
+// ウィンドウリサイズ時にサイズの設定を更新する関数
 function reSize() {
 
-    /* 表示領域のサイズを設定 */
+    // 表示領域のサイズを設定
     $('#display').css('width', $(window).width() + 'px');
 
-    /* オセロ盤のサイズを設定 */
+    // オセロ盤のサイズを設定
     $('#board').css('height', $('#board').css('width'));
 
-    /* マスのサイズを設定 */
+    // マスのサイズを設定
     const cell_size = parseInt($('#board').css('width')) / 8 - 2;
 
     for (let i = 0; i < 8; i++) {
@@ -130,7 +130,7 @@ function reSize() {
         }
     }
 
-    /* 石のサイズを設定 */
+    // 石のサイズを設定
     const stone_size = cell_size * 0.7;
 
     $('.stone').each(function (i, elem) {
@@ -140,39 +140,39 @@ function reSize() {
         });
     });
 
-    /* 表示領域のはじめと最後のマージンを設定 */
+    // 表示領域のはじめと最後のマージンを設定
     $('.display_margin').each(function (i, elem) {
         $(elem).css('height', cell_size + 'px');
     });
 
-    /* メッセージのサイズを設定 */
+    // メッセージのサイズを設定
     $('#msg').css({
         'height': cell_size + 'px',
         'line-height': cell_size + 'px',
         'font-size': cell_size * 0.4 + 'px'
     });
 
-    /* リセットボタンのサイズを設定 */
+    // リセットボタンのサイズを設定
     $('#reset').css('font-size', cell_size * 0.3 + 'px');
 
-    /* オンラインマルチプレイボタンのサイズを設定 */
+    // オンラインマルチプレイボタンのサイズを設定
     $('#togetherjs').css('font-size', cell_size * 0.3 + 'px');
 
-    /* ドロップダウンメニューのサイズを設定 */
+    // ドロップダウンメニューのサイズを設定
     $('.playerSelect').each(function (i, elem) {
         $(elem).css('font-size', cell_size * 0.3 + 'px');
     });
 
-    /* スライダーのサイズを設定 */
+    // スライダーのサイズを設定
     $('#speed').css('width', cell_size * 3 + 'px');
     $('#slider').css('font-size', cell_size * 0.3 + 'px');
 
-    /* 各種ボタンのマージンを設定 */
+    // 各種ボタンのマージンを設定
     $('.wrapper').each(function (i, elem) {
         $(elem).css('margin', cell_size / 10 + 'px');
     });
 
-    /* シミュレーションメッセージのサイズを設定 */
+    // シミュレーションメッセージのサイズを設定
     const msg_size = cell_size * 0.33;
     const msgbox_size = msg_size * 1.6;
 
@@ -188,17 +188,17 @@ function reSize() {
         'font-size': msg_size * 0.8 + 'px'
     });
 
-    /* ゲーム数入力欄のサイズを設定 */
+    // ゲーム数入力欄のサイズを設定
     $('.textbox').each(function (i, elem) {
         $(elem).css('font-size', msg_size * 0.8 + 'px');
     });
 
-    /* シミュレーションのボタンのサイズを設定 */
+    // シミュレーションのボタンのサイズを設定
     $('.sim_button').each(function (i, elem) {
         $(elem).css('font-size', msg_size * 0.7 + 'px');
     });
 
-    /* シミュレーションのドロップダウンメニューのサイズを設定 */
+    // シミュレーションのドロップダウンメニューのサイズを設定
     $('.sim_comSelect').each(function (i, elem) {
         $(elem).css('font-size', msg_size * 0.8 + 'px');
     });

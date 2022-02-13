@@ -1,11 +1,11 @@
-/* 定数 */
+// 定数
 const WHITE = 1;
 const BLACK = -1;
 const NONE = 0;
 const BORDER = 2;
 
 
-/* 座標を表すクラス */
+// 座標を表すクラス
 class Position {
     constructor(y = 0, x = 0) {
         this.y = y;
@@ -52,10 +52,10 @@ class Position {
    ResetGame(): ゲームをリセットする
    CountStone(color): 石の数を数える
    DebugBoard(): boardの状態を表示する（デバッグ用）
-   */
+*/
 class SubGame {
     constructor() {
-        /* ボードの初期化 */
+        // ボードの初期化
         let newboard = [];
         for (let i = 0; i < 10; i++) {
             newboard[i] = [];
@@ -75,16 +75,16 @@ class SubGame {
         newboard[5][5] = WHITE;
         this.board = newboard;
 
-        /* ターンを初期化 */
+        // ターンを初期化
         this.turn = BLACK;
 
-        /* ターン数のカウントを初期化 */
+        // ターン数のカウントを初期化
         this.turnNum = 1;
 
-        /* ゲームが終了しているかどうかを初期化 */
+        // ゲームが終了しているかどうかを初期化
         this.end = false;
 
-        /* 置ける場所を示すボードを初期化 */
+        // 置ける場所を示すボードを初期化
         let newputcheck = [];
         for (let i = 0; i < 10; i++) {
             newputcheck[i] = [];
@@ -97,54 +97,54 @@ class SubGame {
     }
 
 
-    /* boardを返すメソッド */
+    // boardを返すメソッド
     GetBoard() {
         return this.board;
     }
 
-    /* putcheckを返すメソッド */
+    // putcheckを返すメソッド
     GetPutcheck() {
         return this.putcheck;
     }
 
-    /* turnを返すメソッド */
+    // turnを返すメソッド
     GetTurn() {
         return this.turn;
     }
 
-    /* turnNumを返すメソッド */
+    // turnNumを返すメソッド
     GetTurnNum() {
         return this.turnNum;
     }
 
-    /* endを返すメソッド */
+    // endを返すメソッド
     GetEnd() {
         return this.end;
     }
 
 
-    /* 置ける場所を探すメソッド */
+    // 置ける場所を探すメソッド
     CheckBoard() {
-        /* 置ける場所があるかどうかの判定 */
+        // 置ける場所があるかどうかの判定
         let check = false;
 
-        /* 全マスを調査 */
+        // 全マスを調査
         for (let i = 1; i <= 8; i++) {
             for (let j = 1; j <= 8; j++) {
 
-                /* デフォルトで置けない判定にしておく */
+                // デフォルトで置けない判定にしておく
                 this.putcheck[i][j] = false;
 
-                /* 石がすでに置かれていれば置けない */
+                // 石がすでに置かれていれば置けない
                 if (this.board[i][j] !== NONE) {
                     continue;
                 }
 
-                /* 8方向走査 */
+                // 8方向走査
                 let direction = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
                 loop: for (let k = 0; k < 8; k++) {
 
-                    /* 相手の石が続く間、自分の石が出てくるまでその方向をたどる */
+                    // 相手の石が続く間、自分の石が出てくるまでその方向をたどる
                     let m = direction[k][0];
                     let n = direction[k][1];
                     while (this.board[i + m][j + n] === -this.turn) {
@@ -160,12 +160,12 @@ class SubGame {
             }
         }
 
-        /* 置ける場所があるかどうかを返す */
+        // 置ける場所があるかどうかを返す
         return check;
     }
 
 
-    /* 置ける場所を列挙して返すメソッド */
+    // 置ける場所を列挙して返すメソッド
     PutPosition() {
         let ret = [];
 
@@ -181,22 +181,22 @@ class SubGame {
     }
 
 
-    /* 石を置いて、挟んだ石を裏返すメソッド */
+    // 石を置いて、挟んだ石を裏返すメソッド
     PutStone(pos) {
 
-        /* 置けない場所には置かない */
+        // 置けない場所には置かない
         if (this.putcheck[pos.GetY()][pos.GetX()] === false) {
             return false;
         }
 
-        /* 石を置く */
+        // 石を置く
         this.board[pos.GetY()][pos.GetX()] = this.turn;
 
-        /* 挟んだ石を裏返す 8方向走査 */
+        // 挟んだ石を裏返す 8方向走査
         let direction = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
         for (let i = 0; i < 8; i++) {
 
-            /* 裏返す場所の候補を挙げる */
+            // 裏返す場所の候補を挙げる
             let position = [];  //裏返す場所を格納する配列
             let flag = false;  //本当に裏返すかどうかを判定するフラグ
             let m = direction[i][0];
@@ -211,7 +211,7 @@ class SubGame {
                 }
             }
 
-            /* 実際に裏返す */
+            // 実際に裏返す
             if (flag) {
                 for (let j = 0; j < position.length; j++) {
                     this.board[position[j][0]][position[j][1]] = this.turn;
@@ -223,7 +223,7 @@ class SubGame {
     }
 
 
-    /* ゲームを次のターンに進めるメソッド */
+    // ゲームを次のターンに進めるメソッド
     UpdateGame() {
         this.turn = -this.turn;
         this.turnNum++;
@@ -237,13 +237,13 @@ class SubGame {
     }
 
 
-    /* ゲームを終了するメソッド */
+    // ゲームを終了するメソッド
     EndGame() {
         this.end = true;
     }
 
 
-    /* 他のGameクラスを読み込むメソッド */
+    // 他のGameクラスを読み込むメソッド
     LoadGame(game) {
         let board = game.GetBoard();
         let putcheck = game.GetPutcheck();
@@ -263,9 +263,9 @@ class SubGame {
     }
 
 
-    /* ゲームをリセットするメソッド */
+    // ゲームをリセットするメソッド
     ResetGame() {
-        /* ボードの初期化 */
+        // ボードの初期化
         let newboard = [];
         for (let i = 0; i < 10; i++) {
             newboard[i] = [];
@@ -285,16 +285,16 @@ class SubGame {
         newboard[5][5] = WHITE;
         this.board = newboard;
 
-        /* ターンを初期化 */
+        // ターンを初期化
         this.turn = BLACK;
 
-        /* ターン数のカウントを初期化 */
+        // ターン数のカウントを初期化
         this.turnNum = 1;
 
-        /* ゲームが終了しているかどうかを初期化 */
+        // ゲームが終了しているかどうかを初期化
         this.end = false;
 
-        /* 置ける場所を示すボードを初期化 */
+        // 置ける場所を示すボードを初期化
         let newputcheck = [];
         for (let i = 0; i < 10; i++) {
             newputcheck[i] = [];
@@ -307,7 +307,7 @@ class SubGame {
     }
 
 
-    /* 石の数を数えるメソッド */
+    // 石の数を数えるメソッド
     CountStone(color) {
         let count = 0;
         for (let i = 1; i <= 8; i++) {
@@ -321,7 +321,7 @@ class SubGame {
     }
 
 
-    /* boardの状態を表示するメソッド（デバッグ用）*/
+    // boardの状態を表示するメソッド（デバッグ用）*/
     DebugBoard() {
         for (let i = 0; i < 10; i++) {
             for (let j = 0; j < 10; j++) {
@@ -345,7 +345,7 @@ class SubGame {
    UpdateGame()
    EndGame()
    ResetGame()
-   */
+*/
 class Game extends SubGame {
 
     constructor() {
@@ -361,19 +361,19 @@ class Game extends SubGame {
     }
 
 
-    /* ゲームの状態を表示するメソッド */
+    // ゲームの状態を表示するメソッド
     OutputGame() {
-        /* Cookieを更新 */
+        // Cookieを更新
         this.UpdateCookie();
 
-        /* メッセージを表示 */
+        // メッセージを表示
         $('#msg').text(((this.turn === WHITE) ? '白' : '黒') + 'のターンです');
 
-        /* オセロ盤を表示 */
+        // オセロ盤を表示
         for (let i = 1; i <= 8; i++) {
             for (let j = 1; j <= 8; j++) {
 
-                /* 石を表示 */
+                // 石を表示
                 let $stone = $('#stone' + i + j);
                 switch (this.board[i][j]) {
                     case WHITE:
@@ -398,7 +398,7 @@ class Game extends SubGame {
                         break;
                 }
 
-                /* マスを表示 */
+                // マスを表示
                 let $cell = $('#cell' + i + j);
                 switch (this.putcheck[i][j]) {
                     case true:
@@ -415,7 +415,7 @@ class Game extends SubGame {
     }
 
 
-    /* ゲームを次のターンに進めるメソッド */
+    // ゲームを次のターンに進めるメソッド
     UpdateGame() {
         this.turn = -this.turn;
         this.turnNum++;
@@ -434,7 +434,7 @@ class Game extends SubGame {
     }
 
 
-    /* ゲームを終了するメソッド */
+    // ゲームを終了するメソッド
     EndGame() {
         super.EndGame();
         let black = this.CountStone(BLACK);
@@ -451,14 +451,14 @@ class Game extends SubGame {
     }
 
 
-    /* ゲームをリセットするメソッド */
+    // ゲームをリセットするメソッド
     ResetGame() {
         super.ResetGame();
         this.OutputGame();
     }
 
 
-    /* Cookieを読み込むメソッド */
+    // Cookieを読み込むメソッド
     LoadCookie() {
         let cookie = document.cookie;
         if (cookie.includes('board') === false) {
@@ -474,7 +474,7 @@ class Game extends SubGame {
     }
 
 
-    /* Cookieを更新するメソッド */
+    // Cookieを更新するメソッド
     UpdateCookie() {
         let cookie = 'board=';
         for (let i = 1; i <= 8; i++) {

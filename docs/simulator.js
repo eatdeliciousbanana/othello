@@ -1,12 +1,12 @@
-/* グラフの初期化 */
+// グラフの初期化
 let ctx = document.getElementById('canvas').getContext('2d');
 let myLineChart = new Chart(ctx, {});
 
 
-/* シミュレーションを行い結果をグラフに表示する関数 */
+// シミュレーションを行い結果をグラフに表示する関数
 function simulate(sim_blackCom, sim_whiteCom, game_num) {
 
-    /* 石の数ごとのゲーム数 */
+    // 石の数ごとのゲーム数
     let blackStone = [];
     let whiteStone = [];
     for (let i = 0; i <= 64; i++) {
@@ -14,12 +14,12 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
         whiteStone[i] = 0;
     }
 
-    /* 黒,白の勝ち数と引き分けの数 */
+    // 黒,白の勝ち数と引き分けの数
     let blackwin = 0;
     let whitewin = 0;
     let draw = 0;
 
-    /* 黒,白それぞれで使用する関数を決定 */
+    // 黒,白それぞれで使用する関数を決定
     let blackFunc = sim_blackCom[0];
     let blackDepth = sim_blackCom[1];
     let blackCustomCom = sim_blackCom[2];
@@ -28,7 +28,7 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
     let whiteCustomCom = sim_whiteCom[2];
 
 
-    /* シミュレーション本体 */
+    // シミュレーション本体
     for (let i = 0; i < game_num; i++) {
 
         let subgame = new SubGame();
@@ -62,7 +62,7 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
     }
 
 
-    /* グラフのラベルとデータ */
+    // グラフのラベルとデータ
     let plotLabels = [];
     for (let i = 0; i <= 64; i++) {
         plotLabels[i] = i;
@@ -177,7 +177,7 @@ function simulate(sim_blackCom, sim_whiteCom, game_num) {
     });
 
 
-    /* 勝率を表示 */
+    // 勝率を表示
     let blackwin_ratio = (blackwin / game_num).toFixed(4);
     let whitewin_ratio = (whitewin / game_num).toFixed(4);
     let draw_ratio = (draw / game_num).toFixed(4);

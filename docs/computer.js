@@ -1,10 +1,10 @@
-/* m以上n未満のランダムな整数を返す関数 */
+// m以上n未満のランダムな整数を返す関数
 function getRandom(m, n) {
     return Math.floor(Math.random() * (n - m)) + m;
 }
 
 
-/* ランダム */
+// ランダム
 function random(game) {
     let pos = game.PutPosition();
     let num = getRandom(0, pos.length);
@@ -12,7 +12,7 @@ function random(game) {
 }
 
 
-/* nターン先最大石数 */
+// nターン先最大石数
 function nTurnMax(game, n) {
     let subgame = new SubGame();
     let pos = game.PutPosition();
@@ -39,7 +39,7 @@ function nTurnMax(game, n) {
 }
 
 
-/* nターン先最大石数のカーネル */
+// nターン先最大石数のカーネル
 function nTurnMax_kernel(subgame, n) {
     if (n === 1) {
         return;
@@ -52,7 +52,7 @@ function nTurnMax_kernel(subgame, n) {
 }
 
 
-/* nターン先最小石数 */
+// nターン先最小石数
 function nTurnMin(game, n) {
     let subgame = new SubGame();
     let pos = game.PutPosition();
@@ -79,7 +79,7 @@ function nTurnMin(game, n) {
 }
 
 
-/* nターン先最小石数のカーネル */
+// nターン先最小石数のカーネル
 function nTurnMin_kernel(subgame, n) {
     if (n === 1) {
         return;
@@ -92,7 +92,7 @@ function nTurnMin_kernel(subgame, n) {
 }
 
 
-/* 重み付け */
+// 重み付け
 const weight = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 30, -12, 0, -1, -1, 0, -12, 30, 0],
@@ -107,7 +107,7 @@ const weight = [
 ];
 
 
-/* nターン先最良位置 */
+// nターン先最良位置
 function nTurnBestPos(game, n) {
     let subgame = new SubGame();
     let pos = game.PutPosition();
@@ -146,7 +146,7 @@ function nTurnBestPos(game, n) {
 }
 
 
-/* nターン先最良位置のカーネル */
+// nターン先最良位置のカーネル
 function nTurnBestPos_kernel(subgame, n) {
     if (n === 1) {
         return;
@@ -159,7 +159,7 @@ function nTurnBestPos_kernel(subgame, n) {
 }
 
 
-/* カスタム */
+// カスタム
 function custom(game, dummy, customCom) {
     let turnNum = game.GetTurnNum();
     let d1 = customCom.division1;

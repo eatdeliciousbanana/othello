@@ -1,14 +1,14 @@
 $(function () {
-    /* cssの設定を初期化 */
+    // cssの設定を初期化
     initSize();
 
-    /* ウィンドウリサイズ */
+    // ウィンドウリサイズ
     window.onresize = reSize;
 
-    /* ゲームを作成 */
+    // ゲームを作成
     const game = new Game();
 
-    /* オンラインマルチプレイモードで, ゲームに参加したときに自動でページをリロードする */
+    // オンラインマルチプレイモードで, ゲームに参加したときに自動でページをリロードする
     TogetherJS.on('ready', function () {
         $('.togetherjs-primary.togetherjs-dismiss').each(function (i, elem) {
             if ($(elem).text() === 'Yes, join session') {
@@ -21,19 +21,19 @@ $(function () {
         });
     });
 
-    /* 黒プレイヤーの選択 */
+    // 黒プレイヤーの選択
     let blackPlayer = 'player';
     $('#blackSelect').on('change', function () {
         blackPlayer = $(this).val();
     });
 
-    /* 白プレイヤーの選択 */
+    // 白プレイヤーの選択
     let whitePlayer = 'player';
     $('#whiteSelect').on('change', function () {
         whitePlayer = $(this).val();
     });
 
-    /* 対局スピードを設定 */
+    // 対局スピードを設定
     let interval = 1000;
     let intervalId;
     autoplay();
@@ -44,7 +44,7 @@ $(function () {
         autoplay();
     });
 
-    /* プレイヤーがコンピュータだったときに自動で石を置く関数 */
+    // プレイヤーがコンピュータだったときに自動で石を置く関数
     function autoplay() {
         intervalId = window.setInterval(() => {
             if (game.GetTurn() === BLACK && blackPlayer !== 'player' || game.GetTurn() === WHITE && whitePlayer !== 'player') {
@@ -53,7 +53,7 @@ $(function () {
         }, interval);
     }
 
-    /* オセロ盤がクリックされたときの処理 */
+    // オセロ盤がクリックされたときの処理
     $('.cell').each(function (i, elem) {
         $(elem).on('click', function () {
             let clickedPos = new Position();
@@ -63,7 +63,7 @@ $(function () {
         });
     });
 
-    /* ゲームを進める関数 */
+    // ゲームを進める関数
     function controller(clickedPos) {
 
         if (game.GetEnd()) {
@@ -93,26 +93,26 @@ $(function () {
         }
     }
 
-    /* リセットボタンが押されたときの処理 */
+    // リセットボタンが押されたときの処理
     $('#reset').on('click', function () {
         game.ResetGame();
     });
 
-    /* シミュレーションの黒コンピュータの選択 */
+    // シミュレーションの黒コンピュータの選択
     let sim_blackCom = 'random';
     $('#sim_blackSelect').on('change', function () {
         sim_blackCom = $(this).val();
         update_simmsg1();
     });
 
-    /* シミュレーションの白コンピュータの選択 */
+    // シミュレーションの白コンピュータの選択
     let sim_whiteCom = 'random';
     $('#sim_whiteSelect').on('change', function () {
         sim_whiteCom = $(this).val();
         update_simmsg1();
     });
 
-    /* シミュレーションメッセージ1の更新 */
+    // シミュレーションメッセージ1の更新
     function update_simmsg1() {
         let color = [sim_blackCom, sim_whiteCom];
         for (let i = 0; i < 2; i++) {
@@ -179,7 +179,7 @@ $(function () {
         $('#sim_msg1').text(color[0] + '(黒) vs ' + color[1] + '(白)');
     }
 
-    /* シミュレーション開始ボタンが押されたときの処理 */
+    // シミュレーション開始ボタンが押されたときの処理
     $('#sim_start').on('click', function () {
         let game_num = parseInt($('#game_num').val());
         if (Number.isNaN(game_num) || game_num < 1 || game_num > 100000) {
@@ -189,13 +189,13 @@ $(function () {
         simulate(toFunc(sim_blackCom), toFunc(sim_whiteCom), game_num);
     });
 
-    /* シミュレーションを初期化 */
+    // シミュレーションを初期化
     resetSimulation();
 
-    /* シミュレーションリセットボタンが押されたときの処理 */
+    // シミュレーションリセットボタンが押されたときの処理
     $('#sim_reset').on('click', resetSimulation);
 
-    /* シミュレーションをリセットする関数 */
+    // シミュレーションをリセットする関数
     function resetSimulation() {
         $('#sim_blackSelect').val('random');
         $('#sim_whiteSelect').val('random');
@@ -208,7 +208,7 @@ $(function () {
     }
 
 
-    /* カスタムコンピュータのオプション */
+    // カスタムコンピュータのオプション
     let customOptions = {
         customComA: {
             com1: random,
@@ -233,13 +233,13 @@ $(function () {
     };
 
 
-    /* カスタムコンピュータAの表示切替 */
+    // カスタムコンピュータAの表示切替
     $('#customComA_title').on('click', function () {
         $('#customComA_config').slideToggle();
     });
 
 
-    /* カスタムコンピュータAの序盤コンピュータ */
+    // カスタムコンピュータAの序盤コンピュータ
     $('#customComA_select1').on('change', function () {
         let ret = toFunc($(this).val());
         customOptions.customComA.com1 = ret[0];
@@ -247,7 +247,7 @@ $(function () {
     });
 
 
-    /* カスタムコンピュータAの中盤コンピュータ */
+    // カスタムコンピュータAの中盤コンピュータ
     $('#customComA_select2').on('change', function () {
         let ret = toFunc($(this).val());
         customOptions.customComA.com2 = ret[0];
@@ -255,7 +255,7 @@ $(function () {
     });
 
 
-    /* カスタムコンピュータAの終盤コンピュータ */
+    // カスタムコンピュータAの終盤コンピュータ
     $('#customComA_select3').on('change', function () {
         let ret = toFunc($(this).val());
         customOptions.customComA.com3 = ret[0];
@@ -263,7 +263,7 @@ $(function () {
     });
 
 
-    /* カスタムコンピュータAのスライダー */
+    // カスタムコンピュータAのスライダー
     $('#customComA_slider').slider({
         range: true,
         min: 1,
@@ -280,13 +280,13 @@ $(function () {
     });
 
 
-    /* カスタムコンピュータBの表示切替 */
+    // カスタムコンピュータBの表示切替
     $('#customComB_title').on('click', function () {
         $('#customComB_config').slideToggle();
     });
 
 
-    /* カスタムコンピュータBの序盤コンピュータ */
+    // カスタムコンピュータBの序盤コンピュータ
     $('#customComB_select1').on('change', function () {
         let ret = toFunc($(this).val());
         customOptions.customComB.com1 = ret[0];
@@ -294,7 +294,7 @@ $(function () {
     });
 
 
-    /* カスタムコンピュータBの中盤コンピュータ */
+    // カスタムコンピュータBの中盤コンピュータ
     $('#customComB_select2').on('change', function () {
         let ret = toFunc($(this).val());
         customOptions.customComB.com2 = ret[0];
@@ -302,7 +302,7 @@ $(function () {
     });
 
 
-    /* カスタムコンピュータBの終盤コンピュータ */
+    // カスタムコンピュータBの終盤コンピュータ
     $('#customComB_select3').on('change', function () {
         let ret = toFunc($(this).val());
         customOptions.customComB.com3 = ret[0];
@@ -310,7 +310,7 @@ $(function () {
     });
 
 
-    /* カスタムコンピュータBのスライダー */
+    // カスタムコンピュータBのスライダー
     $('#customComB_slider').slider({
         range: true,
         min: 1,
@@ -327,7 +327,7 @@ $(function () {
     });
 
 
-    /* コンピュータ名をコンピュータ関数に変換 */
+    // コンピュータ名をコンピュータ関数に変換
     function toFunc(comName) {
         let comFunc, depth, customCom;
         switch (comName) {
