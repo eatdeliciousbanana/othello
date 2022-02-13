@@ -1,16 +1,9 @@
-/* 定数 */
-const WHITE = 1;
-const BLACK = -1;
-const NONE = 0;
-const BORDER = 2;
-
-
 $(function () {
     /* cssの設定を初期化 */
-    initializeCss();
+    initSize();
 
     /* ウィンドウリサイズ */
-    window.onresize = resizeCss;
+    window.onresize = reSize;
 
     /* ゲームを作成 */
     const game = new Game();

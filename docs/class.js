@@ -1,3 +1,10 @@
+/* 定数 */
+const WHITE = 1;
+const BLACK = -1;
+const NONE = 0;
+const BORDER = 2;
+
+
 /* 座標を表すクラス */
 class Position {
     constructor(y = 0, x = 0) {

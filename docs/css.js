@@ -1,5 +1,5 @@
-/* cssの設定を初期化する関数 */
-function initializeCss() {
+/* サイズの設定を初期化する関数 */
+function initSize() {
 
     /* 表示領域のサイズを設定 */
     $('#display').css('width', $(window).width() + 'px');
@@ -107,8 +107,8 @@ function initializeCss() {
 
 
 
-/* ウィンドウリサイズ時にcssの設定を更新する関数 */
-function resizeCss() {
+/* ウィンドウリサイズ時にサイズの設定を更新する関数 */
+function reSize() {
 
     /* 表示領域のサイズを設定 */
     $('#display').css('width', $(window).width() + 'px');
