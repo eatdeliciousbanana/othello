@@ -33,7 +33,7 @@ https://eatdeliciousbanana.github.io/othello/
 オセロ盤の下にあるリセットボタンを押すと、ゲームを最初からやり直すことができます。
 
 <p align="center">
-  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif0.gif?raw=true" width="40%">
+  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif0.gif?raw=true" width="45%">
 </p>
 
 ### ・人vsコンピュータモード
@@ -48,7 +48,7 @@ https://eatdeliciousbanana.github.io/othello/
 - **カスタムA,B**・・・3種類のコンピュータを組み合わせて、オリジナルの新たなコンピュータを作ることができます。
 
 <p align="center">
-  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif1.gif?raw=true" width="40%">
+  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif1.gif?raw=true" width="45%">
 </p>
 
 #### カスタムの作り方
@@ -58,7 +58,7 @@ https://eatdeliciousbanana.github.io/othello/
 その次に、スライダーを操作して序盤, 中盤, 終盤に割り当てるターン数を調整してください。
 
 <p align="center">
-  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif3.gif?raw=true" width="40%">
+  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif3.gif?raw=true" width="45%">
 </p>
 
 ### ・コンピュータvsコンピュータモード
@@ -67,7 +67,7 @@ https://eatdeliciousbanana.github.io/othello/
 コンピュータの対戦中は、オセロ盤の下にある「対局スピード」のスライダーを操作することで、ゲームの進行する速さを変えることができます。
 
 <p align="center">
-  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif2.gif?raw=true" width="40%">
+  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif2.gif?raw=true" width="45%">
 </p>
 
 ### ・オンラインマルチプレイモード
@@ -80,7 +80,7 @@ https://eatdeliciousbanana.github.io/othello/
 そのあとは、相手がゲームに参加するのを待ってください。
 
 <p align="center">
-  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif4.gif?raw=true" width="40%">
+  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif4.gif?raw=true" width="45%">
 </p>
 
 #### 相手側
@@ -89,7 +89,7 @@ https://eatdeliciousbanana.github.io/othello/
 相手プレイヤーのカーソルが表示されれば、ゲームを始めることができます。
 
 <p align="center">
-  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif5.gif?raw=true" width="40%">
+  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif5.gif?raw=true" width="45%">
 </p>
 
 #### オンライン対戦の仕方
@@ -97,7 +97,7 @@ https://eatdeliciousbanana.github.io/othello/
 先攻と後攻をあらかじめ決めておき、自分と相手で交互に石を置いていってください。
 
 <p align="center">
-  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif6.gif?raw=true" width="60%">
+  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif6.gif?raw=true" width="70%">
 </p>
 
 ### ・シミュレーションモード
@@ -109,5 +109,5 @@ https://eatdeliciousbanana.github.io/othello/
 下の例では、「1ターン先最小石数」のコンピュータよりも「2ターン先最良位置」のコンピュータのほうが強いということが分かります。
 
 <p align="center">
-  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif7.gif?raw=true" width="45%">
+  <img src="https://github.com/eatdeliciousbanana/othello/blob/main/screenshots/gif7.gif?raw=true" width="50%">
 </p>
