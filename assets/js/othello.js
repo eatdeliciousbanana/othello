@@ -32,11 +32,11 @@ class Position {
 
 /* 1つのゲームを表すクラス
    プロパティ
-   board: オセロ盤
-   putcheck: 石を置ける場所
-   turn: ターン
-   turnNum: ターン数のカウント(1~61ターン)
-   end: ゲームが終了しているかどうか
+   int board[10][10]: オセロ盤
+   bool putcheck[10][10]: 石を置ける場所
+   int turn: ターン
+   int turnNum: ターン数のカウント(1~61ターン)
+   bool end: ゲームが終了しているかどうか
    メソッド
    GetBoard(): boardを返す
    GetPutcheck(): putcheckを返す
@@ -168,29 +168,29 @@ class SubGame {
     // 置ける場所を列挙して返すメソッド
     PutPosition() {
         let ret = [];
-
         for (let i = 1; i <= 8; i++) {
             for (let j = 1; j <= 8; j++) {
                 if (this.putcheck[i][j]) {
-                    ret[ret.length] = new Position(i, j);
+                    ret.push(new Position(i, j));
                 }
             }
         }
-
         return ret;
     }
 
 
     // 石を置いて、挟んだ石を裏返すメソッド
     PutStone(pos) {
+        const y = pos.GetY();
+        const x = pos.GetX();
 
         // 置けない場所には置かない
-        if (this.putcheck[pos.GetY()][pos.GetX()] === false) {
+        if (!this.putcheck[y][x]) {
             return false;
         }
 
         // 石を置く
-        this.board[pos.GetY()][pos.GetX()] = this.turn;
+        this.board[y][x] = this.turn;
 
         // 挟んだ石を裏返す 8方向走査
         let direction = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
@@ -201,11 +201,11 @@ class SubGame {
             let flag = false;  //本当に裏返すかどうかを判定するフラグ
             let m = direction[i][0];
             let n = direction[i][1];
-            while (this.board[pos.GetY() + m][pos.GetX() + n] === -this.turn) {
-                position[position.length] = [pos.GetY() + m, pos.GetX() + n];
+            while (this.board[y + m][x + n] === -this.turn) {
+                position.push([y + m, x + n]);
                 m += direction[i][0];
                 n += direction[i][1];
-                if (this.board[pos.GetY() + m][pos.GetX() + n] === this.turn) {
+                if (this.board[y + m][x + n] === this.turn) {
                     flag = true;
                     break;
                 }
@@ -325,7 +325,7 @@ class SubGame {
     DebugBoard() {
         for (let i = 0; i < 10; i++) {
             for (let j = 0; j < 10; j++) {
-                console.log('board[' + i + '][' + j + ']: ' + this.board[i][j]);
+                console.log(`board[${i}][${j}]: ${this.board[i][j]}`);
             }
         }
     }
@@ -363,9 +363,6 @@ class Game extends SubGame {
 
     // ゲームの状態を表示するメソッド
     OutputGame() {
-        // Cookieを更新
-        this.UpdateCookie();
-
         // メッセージを表示
         $('#msg').text(((this.turn === WHITE) ? '白' : '黒') + 'のターンです');
 
@@ -400,15 +397,10 @@ class Game extends SubGame {
 
                 // マスを表示
                 let $cell = $('#cell' + i + j);
-                switch (this.putcheck[i][j]) {
-                    case true:
-                        $cell.css('background-color', 'rgb(70, 200, 30)');
-                        break;
-                    case false:
-                        $cell.css('background-color', 'green');
-                        break;
-                    default:
-                        break;
+                if (this.putcheck[i][j]) {
+                    $cell.css('background-color', 'rgb(70, 200, 30)');
+                } else {
+                    $cell.css('background-color', 'green');
                 }
             }
         }
@@ -442,11 +434,11 @@ class Game extends SubGame {
 
         let $msg = $('#msg');
         if (black > white) {
-            $msg.text('黒' + black + '個, 白' + white + '個で黒の勝ちです！');
+            $msg.text(`黒${black}個, 白${white}個で黒の勝ちです！`);
         } else if (black === white) {
-            $msg.text('黒' + black + '個, 白' + white + '個で引き分けです！');
+            $msg.text(`黒${black}個, 白${white}個で引き分けです！`);
         } else {
-            $msg.text('黒' + black + '個, 白' + white + '個で白の勝ちです！');
+            $msg.text(`黒${black}個, 白${white}個で白の勝ちです！`);
         }
     }
 

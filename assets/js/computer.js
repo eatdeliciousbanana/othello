@@ -28,9 +28,9 @@ function nTurnMax(game, n) {
         if (count > maxCount) {
             maxCount = count;
             maxPosition.length = 0;
-            maxPosition[0] = pos[i];
+            maxPosition.push(pos[i]);
         } else if (count === maxCount) {
-            maxPosition[maxPosition.length] = pos[i];
+            maxPosition.push(pos[i]);
         }
     }
 
@@ -68,9 +68,9 @@ function nTurnMin(game, n) {
         if (count < minCount) {
             minCount = count;
             minPosition.length = 0;
-            minPosition[0] = pos[i];
+            minPosition.push(pos[i]);
         } else if (count === minCount) {
-            minPosition[minPosition.length] = pos[i];
+            minPosition.push(pos[i]);
         }
     }
 
@@ -135,9 +135,9 @@ function nTurnBestPos(game, n) {
         if (eval > maxEval) {
             maxEval = eval;
             bestPosition.length = 0;
-            bestPosition[0] = pos[i];
+            bestPosition.push(pos[i]);
         } else if (eval === maxEval) {
-            bestPosition[bestPosition.length] = pos[i];
+            bestPosition.push(pos[i]);
         }
     }
 

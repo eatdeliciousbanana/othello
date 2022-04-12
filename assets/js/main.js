@@ -8,6 +8,11 @@ $(function () {
     // ゲームを作成
     const game = new Game();
 
+    // ページを閉じたときにオセロ盤の情報をCookieに保存
+    $(window).on('unload', function () {
+        game.UpdateCookie();
+    });
+
     // オンラインマルチプレイモードで, ゲームに参加したときに自動でページをリロードする
     TogetherJS.on('ready', function () {
         $('.togetherjs-primary.togetherjs-dismiss').each(function (i, elem) {
@@ -175,8 +180,7 @@ $(function () {
                     break;
             }
         }
-
-        $('#sim_msg1').text(color[0] + '(黒) vs ' + color[1] + '(白)');
+        $('#sim_msg1').text(`${color[0]}(黒) vs ${color[1]}(白)`);
     }
 
     // シミュレーション開始ボタンが押されたときの処理
@@ -275,7 +279,7 @@ $(function () {
             let d2 = ui.values[1];
             customOptions.customComA.division1 = d1;
             customOptions.customComA.division2 = d2;
-            $('#customComA_msg').text('序盤:1～' + d1 + '　中盤:' + (d1 + 1) + '～' + d2 + '　終盤:' + (d2 + 1) + '～60ターン');
+            $('#customComA_msg').text(`序盤:1～${d1}　中盤:${d1 + 1}～${d2}　終盤:${d2 + 1}～60ターン`);
         }
     });
 
@@ -322,7 +326,7 @@ $(function () {
             let d2 = ui.values[1];
             customOptions.customComB.division1 = d1;
             customOptions.customComB.division2 = d2;
-            $('#customComB_msg').text('序盤:1～' + d1 + '　中盤:' + (d1 + 1) + '～' + d2 + '　終盤:' + (d2 + 1) + '～60ターン');
+            $('#customComB_msg').text(`序盤:1～${d1}　中盤:${d1 + 1}～${d2}　終盤:${d2 + 1}～60ターン`);
         }
     });
 

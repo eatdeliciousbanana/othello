@@ -5,9 +5,10 @@ body {
 
 /* 表示領域 */
 #display {
+    position: relative;
     background-color: pink;
     max-width: 600px;
-    position: relative;
+    min-height: 100vh;
     margin-left: auto;
     margin-right: auto;
 }
